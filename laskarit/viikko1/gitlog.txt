@@ -1,0 +1,125 @@
+commit 5499b5d60f694c7a103f291107ac8219990d42ce
+Author: ellikarvonen <elli.karvonen@helsinki.fi>
+Date:   Thu Mar 15 13:53:07 2018 +0200
+
+    muutoksia
+
+ tiedostoja/file1  | 0
+ tiedostoja/file2  | 0
+ tiedostoja/file22 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 8ac0143e72acfd52463a8194f4f4ab0ecd116ca7
+Author: ellikarvonen <elli.karvonen@helsinki.fi>
+Date:   Thu Mar 15 13:51:34 2018 +0200
+
+    muutos file3
+
+ tiedostoja/file3 | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit db6eed4544b8a3fb2526414fa9d56cdb77894538
+Author: ellikarvonen <elli.karvonen@helsinki.fi>
+Date:   Thu Mar 15 13:49:19 2018 +0200
+
+    tiedostoja luotu
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit b68efa0104f3d2410babdbfcb84b190841625440
+Author: ellikarvonen <elli.karvonen@helsinki.fi>
+Date:   Thu Mar 15 13:31:14 2018 +0200
+
+    muutoksia teksteihin
+
+ eka.txt    | 17 +++++++++++++++--
+ kolmas.txt | 13 +++++++++++++
+ 2 files changed, 28 insertions(+), 2 deletions(-)
+
+commit bc2d384377b119b4a2dc73643e4c86829c245329
+Author: ellikarvonen <elli.karvonen@helsinki.fi>
+Date:   Thu Mar 15 13:27:56 2018 +0200
+
+    nimi vaihdettu
+
+ eka.txt      | 315 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ tiedosto.txt | 315 -----------------------------------------------------------
+ 2 files changed, 315 insertions(+), 315 deletions(-)
+
+commit 70f3786e70dc9905b66141cf39c35a9be886c5da
+Author: ellikarvonen <elli.karvonen@helsinki.fi>
+Date:   Thu Mar 15 13:25:09 2018 +0200
+
+    poistettu toinen.txt
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit aa5f4cdb86120463fab41567663fc90deef5d742
+Author: ellikarvonen <elli.karvonen@helsinki.fi>
+Date:   Thu Mar 15 13:20:43 2018 +0200
+
+    poistettu tekstiä ja lisätty
+
+ tiedosto.txt | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
+
+commit 1d7f6a41947d558662088ba43b9c35bdce8962b9
+Author: ellikarvonen <elli.karvonen@helsinki.fi>
+Date:   Thu Mar 15 13:19:09 2018 +0200
+
+    paljon tekstiä
+
+ tiedosto.txt | 303 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 303 insertions(+)
+
+commit e4c60631cd702dc1318c325e2b20f33639c52cfb
+Author: ellikarvonen <elli.karvonen@helsinki.fi>
+Date:   Thu Mar 15 13:13:29 2018 +0200
+
+    stuff luotu
+
+ stuff/joku.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ee45852b5d9a0bb7e4d2e1de11e5f4bc9acf7784
+Author: ellikarvonen <elli.karvonen@helsinki.fi>
+Date:   Thu Mar 15 13:10:18 2018 +0200
+
+    muutoksia kolmas.txt ja toinen.txt tiedostoihin
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 7df5e1137a149333808e405711e7853bbd7f7554
+Author: ellikarvonen <elli.karvonen@helsinki.fi>
+Date:   Thu Mar 15 13:07:55 2018 +0200
+
+    kolmas.txt luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit e6810c5cdac5799b20543286e42f3adc051dc55f
+Author: ellikarvonen <elli.karvonen@helsinki.fi>
+Date:   Thu Mar 15 13:05:18 2018 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit b3914a0cbc09d8ebbbf01355c9bcabf3a6ea93fe
+Author: ellikarvonen <elli.karvonen@helsinki.fi>
+Date:   Thu Mar 15 13:00:01 2018 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
