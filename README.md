@@ -9,6 +9,6 @@
 [gitlog.txt](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt)
 
 Voin lihavoida **sanoja** ja kursivoida *niitä*. Voin jopa lihavoida **tekstin pätkiä**.
-Toisaalta voin myös *kursivoida osan tekstistä*. Lihavointiin voi käyttää _tähtiä tai alaviivoja_.
+Toisaalta voin myös *kursivoida osan tekstistä*. Lihavointiin voi käyttää __tähtiä tai alaviivoja__.
 
 
