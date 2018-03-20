@@ -14,5 +14,6 @@ Toisaalta voin myös *kursivoida osan tekstistä*. Lihavointiin voi käyttää _
 ## Harjoitustyö
 
 ### Dokumentaatio
-[Vaatimusmäärittely]
+[Vaatimusmäärittely] (https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/vaatimusmaarittely.md)
+
 [Työaikakirjanpito]
