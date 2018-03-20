@@ -1,9 +1,11 @@
 #Vaatimusmäärittely
 
 ##Sovelluksen tarkoitus
+
 Sovelluksen käyttäjän on mahdollista seurata kursseille asettamia tavoitearvosa$
 
 ##Käyttäjät
+
 Alkuvaiheessa sovellusta voi käyttää vain yksi käyttäjä. Myöhemmin sovellukseen$
 jolloin useampi käyttäjä voi käyttää sovellusta.
 
