@@ -12,6 +12,8 @@ jolloin useampi käyttäjä voi käyttää sovellusta.
 
 ## Käyttöliittymäluonnos
 
+![alt text](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/kayttoliittyma.JPG)
+
 ## Perusversion tarjoama toiminnallisuus
 - voi lisätä kursseja
   - kursseilla on nimi ja opintopisteitä
