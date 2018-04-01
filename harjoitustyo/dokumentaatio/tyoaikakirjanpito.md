@@ -7,4 +7,5 @@
 | 20.3.2018 | 1h | harjoitustyön suunnittelu vaatimusmäärittely|
 | 22.3.2018| 1h| viikko 2 viimeinen tehtävä ja vaatimusmäärittelyn viimeistely |
 | 22.3.2018| 1h| harjoitustyön koodin aloittaminen |
-| **yhteensä** | 7h |
+| 28.3.2018| 2h| harjoitustyön koodia  |
+| **yhteensä** | 9h |
