@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -22,6 +23,10 @@ import java.util.List;
 public class CourseDao implements Dao<Course,Integer>{
 
     private Database db;
+    
+    public CourseDao(Database db){
+        this.db = db;
+    }
     
     @Override
     public Course findOne(Integer key) throws SQLException {
@@ -47,7 +52,9 @@ public class CourseDao implements Dao<Course,Integer>{
 
     @Override
     public Course save(Course course) throws SQLException {
+       
        Connection conn = db.getConnection();
+        
        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Course (name,credit) VALUES (?,?)");
        
        stmt.setString(1, course.getName());
@@ -55,8 +62,6 @@ public class CourseDao implements Dao<Course,Integer>{
        stmt.executeUpdate();
 
        stmt.close();
-       conn.close();
-       
        
         stmt = conn.prepareStatement("SELECT * FROM Course"
                 + " WHERE name = ? AND credit = ?");
@@ -84,7 +89,26 @@ public class CourseDao implements Dao<Course,Integer>{
 
     @Override
     public List<Course> findAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //luodaan kursseille lista
+        ArrayList<Course> courses = new ArrayList<>();
+        //otetaan yhteys tietokantaan
+        Connection con = db.getConnection();
+        //Luodaan kysely
+        PreparedStatement stmt = con.prepareStatement("SELECT * FROM Course");
+        //Palautetaan tuloksen sisältävän rs-olion
+        ResultSet rs = stmt.executeQuery();
+        //Käydään tulokset läpi ja lisätään ne listalle
+        while(rs.next()) {
+            Course c = new Course (rs.getInt("id"), rs.getString("name"), rs.getInt("credit"));
+            courses.add(c);
+        }
+        //suljetaan yhteyksiä yms.
+        stmt.close();
+        rs.close();
+        con.close();
+        // palautetaan kurssien lista
+        return courses;
+        
     }
 
     @Override

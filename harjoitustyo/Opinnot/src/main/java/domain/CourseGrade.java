@@ -13,21 +13,21 @@ public class CourseGrade {
     
     private Integer id;
     private Integer id_course;
-    private Integer id_grade;
+    private String grade;
     private Integer goal;
            
     
-    public CourseGrade (Integer id, Integer id_course, Integer id_grade, Integer goal){
+    public CourseGrade (Integer id, Integer id_course, String grade, Integer goal){
         this.goal = goal;
         this.id = id;
         this.id_course = id_course;
-        this.id_grade = id_grade;
+        this.grade = grade;
     }
     
-    public CourseGrade (Integer id_course, Integer id_grade, Integer goal){
+    public CourseGrade (Integer id_course, String grade, Integer goal){
         this.goal = goal;
         this.id_course = id_course;
-        this.id_grade = id_grade;
+        this.grade = grade;
     }
     
     
@@ -47,12 +47,12 @@ public class CourseGrade {
         return id_course;
     }
     
-    public void setIdGrade(Integer id_grade){
-        this.id_grade = id_grade;
+    public void setGrade(String grade){
+        this.grade = grade;
     }
     
-    public Integer getIdGrade(){
-        return id_grade;
+    public String getGrade(){
+        return grade;
     }
     
     public void setGoal(Integer goal){

@@ -20,6 +20,10 @@ public class Course {
         this.name = name;
         this.credit = credit;
     }
+    public Course(String name, Integer credit){
+        this.name = name;
+        this.credit = credit;
+    }
     
     public Integer getId() {
         return id;
@@ -43,5 +47,9 @@ public class Course {
     
     public void setCredit(){
         this.credit = credit;
+    }
+    
+    public String toString(){
+        return name;
     }
 }

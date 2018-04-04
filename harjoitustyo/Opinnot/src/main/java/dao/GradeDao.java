@@ -2,7 +2,11 @@ package dao;
 
 
 import domain.Grade;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -18,6 +22,10 @@ import java.util.List;
 public class GradeDao implements Dao<Grade, Integer> {
     
     private Database db;
+    
+    public GradeDao(Database db){
+        this.db = db;
+    }
 
     @Override
     public Grade findOne(Integer key) throws SQLException {
@@ -36,7 +44,22 @@ public class GradeDao implements Dao<Grade, Integer> {
 
     @Override
     public List<Grade> findAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Grade> grades = new ArrayList<>();
+        
+        Connection con = db.getConnection();
+        PreparedStatement stmt = con.prepareStatement("SELECT * FROM Grade");
+        ResultSet rs = stmt.executeQuery();
+        
+        while(rs.next()) {
+            Grade g = new Grade (rs.getString("grade"));
+            grades.add(g);
+        }
+        
+        stmt.close();
+        rs.close();
+        con.close();
+        
+        return grades;
     }
 
     @Override

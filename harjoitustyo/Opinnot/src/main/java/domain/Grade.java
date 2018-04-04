@@ -11,18 +11,22 @@ package domain;
  */
 public class Grade {
     
-    private Integer grade;
+    private String grade;
     
-    public Grade (Integer grade){
+    public Grade (String grade){
         this.grade = grade;
     }
     
-    public Integer getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(Integer grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
+    }
+    
+    public String toString(){
+        return grade;
     }
     
 }
