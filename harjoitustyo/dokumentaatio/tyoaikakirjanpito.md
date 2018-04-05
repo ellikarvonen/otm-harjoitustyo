@@ -9,4 +9,5 @@
 | 22.3.2018| 1h| harjoitustyön koodin aloittaminen |
 | 28.3.2018| 2h| harjoitustyön koodia  |
 | 4.4.2018 | 2.5h | main luokan tekoa |
-| **yhteensä** | 11.5h |
+| 5.4.2018 | 1.5h | main luokan siistiminen | 
+| **yhteensä** | 13h |
