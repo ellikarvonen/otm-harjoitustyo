@@ -40,7 +40,7 @@ public class CourseDao implements Dao<Course,Integer>{
             return null;
         }
 
-        Course c = new Course(rs.getInt("id"), rs.getString("name"), rs.getInt("credit"));
+        Course c = new Course(rs.getString("name"), rs.getInt("credit"));
 
         stmt.close();
         rs.close();
@@ -71,7 +71,7 @@ public class CourseDao implements Dao<Course,Integer>{
         ResultSet rs = stmt.executeQuery();
         rs.next(); // vain 1 tulos
 
-        Course c = new Course(rs.getInt("id"), rs.getString("name"),
+        Course c = new Course(rs.getString("name"),
                 rs.getInt("credit"));
 
         stmt.close();
@@ -99,7 +99,7 @@ public class CourseDao implements Dao<Course,Integer>{
         ResultSet rs = stmt.executeQuery();
         //Käydään tulokset läpi ja lisätään ne listalle
         while(rs.next()) {
-            Course c = new Course (rs.getInt("id"), rs.getString("name"), rs.getInt("credit"));
+            Course c = new Course (rs.getString("name"), rs.getInt("credit"));
             courses.add(c);
         }
         //suljetaan yhteyksiä yms.

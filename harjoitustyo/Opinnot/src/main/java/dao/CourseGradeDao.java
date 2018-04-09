@@ -4,6 +4,7 @@ package dao;
 import dao.Dao;
 import domain.Course;
 import domain.CourseGrade;
+import domain.Grade;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,17 +39,16 @@ public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
     public CourseGrade save(CourseGrade cg) throws SQLException {
         Connection conn = db.getConnection();
 
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO CourseGrade (Integer id_course, String grade, Integer goal) VALUES (?,?,?)");
-
-        stmt.setInt(1, cg.getIdCourse());
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO CourseGrade (name,grade,goal) VALUES (?,?,?)");
+        
+        stmt.setString(1, cg.getCourse());
         stmt.setString(2, cg.getGrade());
         stmt.setInt(3, cg.getGoal());
-
+        
         stmt.executeUpdate();
 
-        ResultSet rs = stmt.executeQuery();
-        rs.next(); // vain 1 tulos
-        
+        stmt.close();
+        conn.close();
         return cg;
     }
 
@@ -67,4 +67,25 @@ public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    public Grade findGrade(String name, Integer goal) throws SQLException{
+        Connection conn = db.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM CourseGrade WHERE  name = ? AND goal = ?");
+        stmt.setString(1, name);
+        stmt.setInt(2, goal);
+
+        ResultSet rs = stmt.executeQuery();
+        boolean hasOne = rs.next();
+        if (!hasOne) {
+            return null;
+        }
+
+        Grade g = new Grade(rs.getString("grade"));
+
+        stmt.close();
+        rs.close();
+
+        conn.close();
+
+        return g;
+    }
 }

@@ -9,6 +9,9 @@ import dao.GradeDao;
 import domain.Course;
 import domain.Grade;
 import domain.StudyService;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.Button;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -23,29 +26,83 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     
+    private Button buttonNewCourse;
+    private Button buttonCourseGrade;
+    private Button buttonCourseInfo;
+    private Button buttonHome;
+    private StudyService ss;
+    private CourseGradeDao cgd;
+    private GradeDao gd;
+    private CourseDao cd;
+    
+    
     @Override
     public void start(Stage stage) throws Exception {
         File file = new File ("study.db");
         Database db = new Database("jdbc:sqlite:" + file.getAbsolutePath());
         
-        CourseDao cd = new CourseDao(db);
-        CourseGradeDao cgd = new CourseGradeDao(db);
-        GradeDao gd = new GradeDao(db);
+        cd = new CourseDao(db);
+        cgd = new CourseGradeDao(db);
+        gd = new GradeDao(db);
+        ss = new StudyService(cd, cgd);
         
-        StudyService ss = new StudyService(cd, cgd);
+        buttonNewCourse = new Button("Lisää uusi kurssi");
+        buttonCourseGrade = new Button("Lisää kurssi suoritetuksi");
+        buttonCourseInfo = new Button("Kurssitiedot");
+        buttonHome = new Button ("Etusivulle");
         
-        //Etusivu
-        //luodaan napit
-        Button button1 = new Button("Lisää uusi kurssi");
-        Button button2 = new Button("Lisää kurssi suoritetuksi");
-        Button button3 = new Button("Kurssitiedot");
+        buttonHome.setOnAction((event) ->  {
+            stage.setScene(this.home());
+        });
         
+        buttonNewCourse.setOnAction((event) -> {
+            try {
+                stage.setScene(addCoursePage());
+            } catch (SQLException ex) {
+                
+            }
+        });
+        
+        buttonCourseGrade.setOnAction((event) -> {
+            try {
+                stage.setScene(courseGradePage());
+            } catch (SQLException ex) {
+                
+            }
+        });
+        
+        buttonCourseInfo.setOnAction((event) -> {
+            try {
+                stage.setScene(courseInformations());
+            } catch (SQLException ex) {
+               
+            }
+        });
+        
+        stage.setScene(this.home());
+        stage.show();
+    }
+    
+    private Course getChoiceCourse(ChoiceBox<Course> cb){
+        Course c = cb.getValue();
+        return c;
+    }
+    
+    private Grade getChoiceGrade(ChoiceBox<Grade> cb){
+        Grade g = cb.getValue();
+        return g;
+    }
+    
+    private Scene home(){
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(button1, button2, button3);
+        vbox.getChildren().addAll(buttonNewCourse, buttonCourseGrade, buttonCourseInfo);
         
         Scene home = new Scene(vbox);
+        return home;
+    }
+    
+    private Scene addCoursePage() throws SQLException {
         
-        //Kurssien lisääminen sivu
         Label text1 = new Label("Lisää uusi kurssi");
         Label nameText = new Label("nimi:");
         Label creditText = new Label("opintopisteitä:");
@@ -55,26 +112,26 @@ public class Main extends Application {
         TextField courseName = new TextField();
         TextField credit = new TextField();
         
-               
         ChoiceBox<Grade> goalGrade = new ChoiceBox(FXCollections.observableArrayList(gd.findAll())); 
         
-        Button buttonHome = new Button ("Etusivulle");
         Button buttonAdd = new Button ("Lisää");
        
-        VBox vbox2 = new VBox();
-        vbox2.getChildren().addAll(text1, nameText, courseName, creditText, credit, text4,goalGrade, buttonAdd, addedText, buttonHome );
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(text1, nameText, courseName, creditText, credit, text4, goalGrade, buttonAdd, addedText, buttonHome );
         
-        Scene addCoursePage = new Scene(vbox2);
+        Scene addCoursePage = new Scene(vbox);
         
-        //kurssin lisääminen tietokantaan
+        //kurssin lisääminen tietokantaan throws SQLException
         buttonAdd.setOnAction((event) -> {
             ss.saveCourse(courseName.getText(), Integer.parseInt(credit.getText()));
-            
             addedText.setText("Kurssi lisätty!");
-            
+            ss.saveGoalGrade(courseName.getText(), getChoiceGrade(goalGrade));
         });
         
-        //Kurssitiedot sivu
+        return addCoursePage;
+    }
+    
+    private Scene courseInformations() throws SQLException{
         Label textSelectCourse = new Label("Kurssitiedot");
         
         ChoiceBox<Course> choicebox = new ChoiceBox(FXCollections.observableArrayList(cd.findAll()));
@@ -82,56 +139,54 @@ public class Main extends Application {
         Label printCredit = new Label("");
         Label nameText2 = new Label("nimi:");
         Label creditText2 = new Label("opintopisteitä:");
-        Button buttonHome2 = new Button ("Etusivulle");
+        Label goalGradeText = new Label("arvosanatavoite throws SQLException:");
+        Label printGoalGrade = new Label("");
+        Label gradeText = new Label("arvosana:");
+        Label printGrade = new Label("");
+        
         Button  buttonInfo = new Button ("Tiedot");
         
-        VBox vbox3 = new VBox();
-        vbox3.getChildren().addAll(textSelectCourse, choicebox, nameText2, printName, creditText2, printCredit,buttonInfo, buttonHome2);
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(textSelectCourse, choicebox, nameText2, printName, creditText2, printCredit, goalGradeText, printGoalGrade, gradeText, printGrade, buttonInfo, buttonHome);
         
-        Scene courseInformations = new Scene(vbox3);
+        Scene courseInformations = new Scene(vbox);
         
         buttonInfo.setOnAction((event) ->  {
-            printName.setText(getChoice(choicebox).getName());
-            printCredit.setText("" + getChoice(choicebox).getCredit());
+            printName.setText(getChoiceCourse(choicebox).getName());
+            printCredit.setText("" + getChoiceCourse(choicebox).getCredit());
+            printGoalGrade.setText(ss.printGoalGrade(getChoiceCourse(choicebox).getName()));
+            printGrade.setText(ss.printGrade(getChoiceCourse(choicebox).getName()));
+            
+            
         });
         
-        //tietojen listaaminen
-        
-        
-        //Etusivulta kurssin lisäämään
-        button1.setOnAction((event) -> {
-           stage.setScene(addCoursePage);
-        });
-        
-        button3.setOnAction((event) -> {
-           stage.setScene(courseInformations);
-        });
-        
-        //takaisin etusivulle
-        buttonHome.setOnAction((event) ->  {
-            stage.setScene(home);
-        });
-        
-        buttonHome2.setOnAction((event) ->  {
-            stage.setScene(home);
-        });
-        
-        
-        
-        stage.setScene(home);
-        stage.show();
-        
+        return courseInformations;    
     }
     
-    private Course getChoice(ChoiceBox<Course> cb){
-        Course c = cb.getValue();
-        return c;
+    private Scene courseGradePage() throws SQLException{
+        Label textSelectCourse = new Label("Valitse kurssi");
+        ChoiceBox<Course> choicebox = new ChoiceBox(FXCollections.observableArrayList(cd.findAll()));
+        Label textGrade = new Label("Saatu arvosana:");
+       
+        Button buttonAdd = new Button ("Lisää");
+        
+        ChoiceBox<Grade> grade = new ChoiceBox(FXCollections.observableArrayList(gd.findAll())); 
+        
+        VBox vbox = new VBox();
+        vbox.getChildren().addAll(textSelectCourse, choicebox, textGrade, grade, buttonAdd, buttonHome);
+        
+        Scene courseGradePage = new Scene(vbox);
+        
+        buttonAdd.setOnAction((event) -> {
+            
+            ss.saveGrade(getChoiceCourse(choicebox).getName(), getChoiceGrade(grade));
+        });
+        
+        return  courseGradePage;
     }
-    
-    
     
     public static void main(String[] args) throws Exception {
-        
+       
         launch(Main.class);
         
     }

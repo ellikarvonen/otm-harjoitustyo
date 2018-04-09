@@ -37,11 +37,24 @@ public class StudyService {
     
     
     //kurssille tavoitearvosanan lisääminen
-    public boolean saveGoalGrade(Course c, Grade grade){
+    public boolean saveGoalGrade(String courseName, Grade grade){
         
-        Integer id_course = c.getId();
         // goal = 1 kun kyseessä on tavoitearvosana
-        CourseGrade cg = new CourseGrade(id_course,grade.getGrade(),1);
+        CourseGrade cg = new CourseGrade(courseName,grade.getGrade(),1);
+        try {
+            cgd.save(cg);
+            
+        } catch (Exception ex) {
+            return false;
+            
+        }
+        return true;
+    }
+    
+    //kurssille arvosanan lisääminen suorittaessa
+    public boolean saveGrade(String courseName, Grade grade){
+        
+        CourseGrade cg = new CourseGrade(courseName,grade.getGrade(),0);
         try {
             cgd.save(cg);
         } catch (Exception ex) {
@@ -52,22 +65,26 @@ public class StudyService {
         return true;
     }
     
-    //kurssille arvosanan lisääminen suorittaessa
-    public boolean saveGrade(Course c, Grade grade){
-        //Mitä tapahtuu jos tavoitearvosana ei ole oikea??
-      
-        //etsitään kurssin id, jonka nimi on annettu
-        Integer id_course = c.getId();
-        // goal = 1 kun kyseessä on tavoitearvosana
-        CourseGrade cg = new CourseGrade(id_course,grade.getGrade(),0);
+    public String printGoalGrade(String name){
         try {
-            cgd.save(cg);
-        } catch (Exception ex) {
-            return false;
+            Grade g = cgd.findGrade(name, 1);
+            return g.toString();
+        }catch (Exception ex) {
+            return "";
         }
-        
-        
-        return true;
     }
+    
+    public String printGrade(String name){
+        try {
+            Grade g = cgd.findGrade(name, 0);
+            return g.toString();
+        }catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    
+    
+    
     
 }

@@ -12,21 +12,21 @@ package domain;
 public class CourseGrade {
     
     private Integer id;
-    private Integer id_course;
+    private String course;
     private String grade;
     private Integer goal;
            
     
-    public CourseGrade (Integer id, Integer id_course, String grade, Integer goal){
+    public CourseGrade (Integer id, String course, String grade, Integer goal){
         this.goal = goal;
         this.id = id;
-        this.id_course = id_course;
+        this.course = course;
         this.grade = grade;
     }
     
-    public CourseGrade (Integer id_course, String grade, Integer goal){
+    public CourseGrade (String course, String grade, Integer goal){
         this.goal = goal;
-        this.id_course = id_course;
+        this.course = course;
         this.grade = grade;
     }
     
@@ -39,12 +39,12 @@ public class CourseGrade {
         return id;
     }
     
-    public void setIdCourse(Integer id_course){
-        this.id_course = id_course;
-    }
-    
-    public Integer getIdCourse(){
-        return id_course;
+//    public void setIdCourse(Scourse){
+//        this.course = course;
+//    }
+//    
+    public String getCourse(){
+        return course;
     }
     
     public void setGrade(String grade){
