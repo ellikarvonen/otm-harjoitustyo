@@ -113,6 +113,7 @@ public class Main extends Application {
         TextField credit = new TextField();
         
         ChoiceBox<Grade> goalGrade = new ChoiceBox(FXCollections.observableArrayList(gd.findAll())); 
+        goalGrade.getSelectionModel().selectFirst();
         
         Button buttonAdd = new Button ("Lisää");
        
@@ -123,9 +124,7 @@ public class Main extends Application {
         
         //kurssin lisääminen tietokantaan throws SQLException
         buttonAdd.setOnAction((event) -> {
-            ss.saveCourse(courseName.getText(), Integer.parseInt(credit.getText()));
-            addedText.setText("Kurssi lisätty!");
-            ss.saveGoalGrade(courseName.getText(), getChoiceGrade(goalGrade));
+                addedText.setText(ss.saveCourseAndGoalGrade(courseName.getText(), credit.getText(), getChoiceGrade(goalGrade))); 
         });
         
         return addCoursePage;
@@ -139,7 +138,7 @@ public class Main extends Application {
         Label printCredit = new Label("");
         Label nameText2 = new Label("nimi:");
         Label creditText2 = new Label("opintopisteitä:");
-        Label goalGradeText = new Label("arvosanatavoite throws SQLException:");
+        Label goalGradeText = new Label("arvosanatavoite:");
         Label printGoalGrade = new Label("");
         Label gradeText = new Label("arvosana:");
         Label printGrade = new Label("");
@@ -159,13 +158,12 @@ public class Main extends Application {
             
             
         });
-        
         return courseInformations;    
     }
     
     private Scene courseGradePage() throws SQLException{
         Label textSelectCourse = new Label("Valitse kurssi");
-        ChoiceBox<Course> choicebox = new ChoiceBox(FXCollections.observableArrayList(cd.findAll()));
+        ChoiceBox<Course> choicebox = new ChoiceBox(FXCollections.observableArrayList(ss.findAllNotCompletedCourses()));
         Label textGrade = new Label("Saatu arvosana:");
        
         Button buttonAdd = new Button ("Lisää");

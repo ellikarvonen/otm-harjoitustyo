@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -87,5 +88,27 @@ public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
         conn.close();
 
         return g;
+    }
+    
+    public List<CourseGrade> findAllCompletedCourses() throws SQLException {
+        //luodaan kursseille lista
+        ArrayList<CourseGrade> courses = new ArrayList<>();
+        //otetaan yhteys tietokantaan
+        Connection con = db.getConnection();
+        //Luodaan kysely
+        PreparedStatement stmt = con.prepareStatement("SELECT * FROM CourseGrade WHERE goal = 0");
+        //Palautetaan tuloksen sisältävän rs-olion
+        ResultSet rs = stmt.executeQuery();
+        //Käydään tulokset läpi ja lisätään ne listalle
+        while(rs.next()) {
+            CourseGrade cg = new CourseGrade (rs.getString("name"), rs.getString("grade"), rs.getInt("goal"));
+            courses.add(cg);
+        }
+        //suljetaan yhteyksiä yms.
+        stmt.close();
+        rs.close();
+        con.close();
+        // palautetaan kurssien lista
+        return courses;
     }
 }
