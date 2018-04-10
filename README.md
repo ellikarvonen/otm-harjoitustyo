@@ -5,6 +5,6 @@
 
 [Työaikakirjanpito](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/tyoaikakirjanpito.md)
 
-###Komentorivitoiminnot
+### Komentorivitoiminnot
 
 
