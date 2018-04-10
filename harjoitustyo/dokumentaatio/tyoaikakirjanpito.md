@@ -11,4 +11,5 @@
 | 4.4.2018 | 2.5h | main luokan tekoa |
 | 5.4.2018 | 1.5h | main luokan siistiminen | 
 | 9.4.2018 | 2h | arvosanan ja tavoitearvosanan lisääminen | 
-| **yhteensä** | 15h |
+| 10.4.2018 | 3h | testit, jacoco ja toiminnallisuutta lisää |
+| **yhteensä** | 18h |
