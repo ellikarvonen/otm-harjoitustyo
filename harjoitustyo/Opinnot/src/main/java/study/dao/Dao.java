@@ -1,4 +1,4 @@
-package dao;
+package study.dao;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

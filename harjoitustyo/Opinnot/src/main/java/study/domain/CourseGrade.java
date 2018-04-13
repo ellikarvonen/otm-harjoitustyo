@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain;
+package study.domain;
 
 /**
  *
@@ -17,25 +17,25 @@ public class CourseGrade {
     private Integer goal;
            
     
-    public CourseGrade (Integer id, String course, String grade, Integer goal){
+    public CourseGrade(Integer id, String course, String grade, Integer goal) {
         this.goal = goal;
         this.id = id;
         this.course = course;
         this.grade = grade;
     }
     
-    public CourseGrade (String course, String grade, Integer goal){
+    public CourseGrade(String course, String grade, Integer goal) {
         this.goal = goal;
         this.course = course;
         this.grade = grade;
     }
     
     
-    public void setId(Integer id){
+    public void setId(Integer id) {
         this.id = id;
     }
     
-    public Integer getId(){
+    public Integer getId() {
         return id;
     }
     
@@ -43,23 +43,23 @@ public class CourseGrade {
 //        this.course = course;
 //    }
 //    
-    public String getCourse(){
+    public String getCourse() {
         return course;
     }
     
-    public void setGrade(String grade){
+    public void setGrade(String grade) {
         this.grade = grade;
     }
     
-    public String getGrade(){
+    public String getGrade() {
         return grade;
     }
     
-    public void setGoal(Integer goal){
+    public void setGoal(Integer goal) {
         this.goal = goal;
     }
     
-    public Integer getGoal(){
+    public Integer getGoal() {
         return goal;
     }
     

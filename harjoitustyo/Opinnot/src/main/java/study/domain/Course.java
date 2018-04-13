@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain;
+package study.domain;
 
 /**
  *
@@ -16,7 +16,7 @@ public class Course {
     private Integer credit;
     
 
-    public Course(String name, Integer credit){
+    public Course(String name, Integer credit) {
         this.name = name;
         this.credit = credit;
     }
@@ -37,15 +37,15 @@ public class Course {
         this.name = name;
     }
     
-    public Integer getCredit(){
+    public Integer getCredit() {
         return credit;
     }
     
-    public void setCredit(){
+    public void setCredit(Integer credit) {
         this.credit = credit;
     }
     
-    public String toString(){
+    public String toString() {
         return name;
     }
 }

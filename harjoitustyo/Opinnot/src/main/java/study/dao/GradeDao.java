@@ -1,7 +1,8 @@
-package dao;
+package study.dao;
 
 
-import domain.Grade;
+import study.domain.Course;
+import study.domain.Grade;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,7 +24,7 @@ public class GradeDao implements Dao<Grade, Integer> {
     
     private Database db;
     
-    public GradeDao(Database db){
+    public GradeDao(Database db) {
         this.db = db;
     }
 
@@ -33,8 +34,32 @@ public class GradeDao implements Dao<Grade, Integer> {
     }
 
     @Override
-    public Grade save(Grade element) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Grade save(Grade grade) throws SQLException {
+        Connection conn = db.getConnection();
+           
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Grade (grade) VALUES (?)");
+
+        stmt.setString(1, grade.getGrade());
+        
+        stmt.executeUpdate();
+
+        stmt.close();
+       
+        stmt = conn.prepareStatement("SELECT * FROM Grade WHERE grade = ?");
+        stmt.setString(1, grade.getGrade());
+
+        ResultSet rs = stmt.executeQuery();
+        rs.next(); // vain 1 tulos
+
+        Grade c = new Grade(rs.getString("grade"));
+                
+
+        stmt.close();
+        rs.close();
+
+        conn.close();
+
+        return c;
     }
 
     @Override
@@ -50,8 +75,8 @@ public class GradeDao implements Dao<Grade, Integer> {
         PreparedStatement stmt = con.prepareStatement("SELECT * FROM Grade");
         ResultSet rs = stmt.executeQuery();
         
-        while(rs.next()) {
-            Grade g = new Grade (rs.getString("grade"));
+        while (rs.next()) {
+            Grade g = new Grade(rs.getString("grade"));
             grades.add(g);
         }
         

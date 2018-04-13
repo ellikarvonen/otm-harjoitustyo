@@ -1,8 +1,8 @@
-package dao;
+package study.dao;
 
 
-import dao.Dao;
-import domain.Course;
+import study.dao.Dao;
+import study.domain.Course;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,48 +20,49 @@ import java.util.List;
  *
  * @author ellikarv
  */
-public class CourseDao implements Dao<Course,Integer>{
+public class CourseDao implements Dao<Course, Integer> {
 
     private Database db;
     
-    public CourseDao(Database db){
+    public CourseDao(Database db) {
         this.db = db;
     }
     
     @Override
     public Course findOne(Integer key) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public Course findByName(String name) throws SQLException {
         Connection conn = db.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Course WHERE  = ?");
-        stmt.setInt(1, key);
-
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Course WHERE name = ?");
+        
+        stmt.setString(1, name);
+        
         ResultSet rs = stmt.executeQuery();
-        boolean hasOne = rs.next();
-        if (!hasOne) {
-            return null;
-        }
-
-        Course c = new Course(rs.getString("name"), rs.getInt("credit"));
-
+        rs.next();
+        
+        Course course = new Course(rs.getString("name"), rs.getInt("credit"));
+        
         stmt.close();
         rs.close();
-
         conn.close();
+        
+        return course;
 
-        return c;
     }
 
     @Override
     public Course save(Course course) throws SQLException {
-       
-       Connection conn = db.getConnection();
-        
-       PreparedStatement stmt = conn.prepareStatement("INSERT INTO Course (name,credit) VALUES (?,?)");
-       
-       stmt.setString(1, course.getName());
-       stmt.setInt(2, course.getCredit());
-       stmt.executeUpdate();
+        Connection conn = db.getConnection();
+           
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Course (name,credit) VALUES (?,?)");
 
-       stmt.close();
+        stmt.setString(1, course.getName());
+        stmt.setInt(2, course.getCredit());
+        stmt.executeUpdate();
+
+        stmt.close();
        
         stmt = conn.prepareStatement("SELECT * FROM Course"
                 + " WHERE name = ? AND credit = ?");
@@ -98,8 +99,8 @@ public class CourseDao implements Dao<Course,Integer>{
         //Palautetaan tuloksen sisältävän rs-olion
         ResultSet rs = stmt.executeQuery();
         //Käydään tulokset läpi ja lisätään ne listalle
-        while(rs.next()) {
-            Course c = new Course (rs.getString("name"), rs.getInt("credit"));
+        while (rs.next()) {
+            Course c = new Course(rs.getString("name"), rs.getInt("credit"));
             courses.add(c);
         }
         //suljetaan yhteyksiä yms.

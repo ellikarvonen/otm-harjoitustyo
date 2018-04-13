@@ -1,10 +1,10 @@
-package dao;
+package study.dao;
 
 
-import dao.Dao;
-import domain.Course;
-import domain.CourseGrade;
-import domain.Grade;
+import study.dao.Dao;
+import study.domain.Course;
+import study.domain.CourseGrade;
+import study.domain.Grade;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,7 +27,7 @@ public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
     private Database db;
     
     
-    public CourseGradeDao(Database db){
+    public CourseGradeDao(Database db) {
         this.db = db;
     }
 
@@ -68,7 +68,7 @@ public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public Grade findGrade(String name, Integer goal) throws SQLException{
+    public Grade findGrade(String name, Integer goal) throws SQLException {
         Connection conn = db.getConnection();
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM CourseGrade WHERE  name = ? AND goal = ?");
         stmt.setString(1, name);
@@ -100,8 +100,8 @@ public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
         //Palautetaan tuloksen sisältävän rs-olion
         ResultSet rs = stmt.executeQuery();
         //Käydään tulokset läpi ja lisätään ne listalle
-        while(rs.next()) {
-            CourseGrade cg = new CourseGrade (rs.getString("name"), rs.getString("grade"), rs.getInt("goal"));
+        while (rs.next()) {
+            CourseGrade cg = new CourseGrade(rs.getString("name"), rs.getString("grade"), rs.getInt("goal"));
             courses.add(cg);
         }
         //suljetaan yhteyksiä yms.

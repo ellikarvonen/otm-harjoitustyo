@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-import domain.Course;
+import study.domain.Course;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -52,10 +52,23 @@ public class CourseTest {
         String name = course.getName();
         assertEquals("OTM", name);
     }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    
+    @Test
+    public void setNameWorks(){
+        course.setName("Test");
+        assertEquals("Test", course.getName());
+    }
+    
+    @Test
+    public void setCreditWorks(){
+        course.setCredit(10);
+        int credit = course.getCredit();
+        assertEquals(10, credit);
+    }
+    
+    @Test
+    public void toStringWorks(){
+        assertEquals("OTM", course.toString());
+    }
+   
 }

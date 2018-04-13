@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain;
+package study.domain;
 
-import dao.CourseDao;
-import dao.CourseGradeDao;
+import study.dao.CourseDao;
+import study.dao.CourseGradeDao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class StudyService {
     private CourseDao cd;
     private CourseGradeDao cgd;
     
-    public StudyService(CourseDao cd, CourseGradeDao cgd){
+    public StudyService(CourseDao cd, CourseGradeDao cgd) {
         this.cd = cd;
         this.cgd = cgd;
     }
@@ -30,8 +30,8 @@ public class StudyService {
     public boolean saveCourse(String name, String credit) {
        
         try {
-            if (courseNotExist(name)==true && creditIsInteger(credit)){
-                Course course = new Course(name,Integer.parseInt(credit));
+            if (courseNotExist(name) == true && creditIsInteger(credit) && courseNameIsTooLong(name) == false && courseNameIsEmpty(name) == false) {
+                Course course = new Course(name, Integer.parseInt(credit));
                 cd.save(course);
                 return true;
             }
@@ -43,22 +43,24 @@ public class StudyService {
         return false;
     }
         
-    public String saveCourseAndGoalGrade(String name, String credit, Grade grade){
-        if (saveCourse(name, credit) == true){
+    public String saveCourseAndGoalGrade(String name, String credit, Grade grade) {
+        if (saveCourse(name, credit) == true) {
             saveGoalGrade(name, grade);
             return "Kurssi lisätty!";
-            
-        }else if((courseNotExist(name)== false  )){
+        } else if ((courseNotExist(name) == false)) {
             return "Kurssi " + name + " on jo olemassa!";
-        }else{ 
+        } else if ((creditIsInteger(credit) == false)) { 
             return "Opintopisteiden tulee olla kokonaisnumero!";
+        } else if ((courseNameIsEmpty(name) == true)) { 
+            return "Nimi ei saa olla tyhjä!";
+        } else {
+            return "Kurssin nimi on liian pitkä. Sallittu merkkimäärä on 200.";
         }
-        
     }
     
     //kurssille tavoitearvosanan lisääminen
-    public boolean saveGoalGrade(String courseName, Grade grade){
-        CourseGrade cg = new CourseGrade(courseName,grade.getGrade(),1);
+    public boolean saveGoalGrade(String courseName, Grade grade) {
+        CourseGrade cg = new CourseGrade(courseName, grade.getGrade(), 1);
         try {
             cgd.save(cg);
             
@@ -69,9 +71,9 @@ public class StudyService {
     }
     
     //kurssille arvosanan lisääminen suorittaessa
-    public boolean saveGrade(String courseName, Grade grade){
+    public boolean saveGrade(String courseName, Grade grade) {
         
-        CourseGrade cg = new CourseGrade(courseName,grade.getGrade(),0);
+        CourseGrade cg = new CourseGrade(courseName, grade.getGrade(), 0);
         try {
             cgd.save(cg);
         } catch (Exception ex) {
@@ -80,75 +82,79 @@ public class StudyService {
         return true;
     }
     
-    public String printGoalGrade(String name){
+    public String printGoalGrade(String name) {
         try {
             Grade g = cgd.findGrade(name, 1);
             return g.toString();
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             return "";
         }
     }
     
-    public String printGrade(String name){
+    public String printGrade(String name) {
         try {
             Grade g = cgd.findGrade(name, 0);
             return g.toString();
-        }catch (Exception ex) {
+        } catch (Exception ex) {
             return "";
         }
     }
     
     public boolean courseNotExist(String name) {
         
-        try{
+        try {
             List list = cd.findAll().stream()
                     .filter(n -> n.getName().toLowerCase().equals(name.toLowerCase()))
                     .collect(Collectors.toCollection(ArrayList::new));
             
-            if (list.isEmpty()){
+            if (list.isEmpty()) {
                 return true; //kurssia ei ole olemassa
             }
             
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return false;
         }
         return false;
     }
     
-    public boolean creditIsInteger(String credit){
+    public boolean courseNameIsEmpty(String name){
+        return name.isEmpty();
+    }
+    
+    public boolean courseNameIsTooLong(String name) {
+        return name.length() > 200;
+    }
+    
+    public boolean creditIsInteger(String credit) {
     
         try { 
             Integer.parseInt(credit); 
-        } catch(NumberFormatException e) { 
+        } catch (NumberFormatException | NullPointerException e) { 
             return false; 
-        } catch(NullPointerException eInteger) {
-            return false;
         }
         return true;
     }
     
-    public List<Course> findAllNotCompletedCourses() throws SQLException{
+    public List<Course> findAllNotCompletedCourses() throws SQLException {
         List<Course> allCourses = cd.findAll();
         List<Course> courses = new ArrayList<>();
         int i = 0;
         
-        while (i < allCourses.size()){
+        while (i < allCourses.size()) {
             int index = 0;
             int calc = 0;
-            while(index < cgd.findAllCompletedCourses().size()){
-                if (allCourses.get(i).getName().equals(cgd.findAllCompletedCourses().get(index).getCourse())){
-                    calc ++;
+            while (index < cgd.findAllCompletedCourses().size()) {
+                if (allCourses.get(i).getName().equals(cgd.findAllCompletedCourses().get(index).getCourse())) {
+                    calc++;
                 }
-                index ++;
+                index++;
             }
-            if (calc == 0){
+            if (calc == 0) {
                 courses.add(allCourses.get(i));
             }
-            
             calc = 0;
-            i ++;
+            i++;
         }
-        
         return courses;
     }
     

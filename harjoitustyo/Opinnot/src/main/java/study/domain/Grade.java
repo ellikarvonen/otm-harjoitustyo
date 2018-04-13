@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain;
+package study.domain;
 
 /**
  *
@@ -13,7 +13,7 @@ public class Grade {
     
     private String grade;
     
-    public Grade (String grade){
+    public Grade(String grade) {
         this.grade = grade;
     }
     
@@ -25,7 +25,7 @@ public class Grade {
         this.grade = grade;
     }
     
-    public String toString(){
+    public String toString() {
         return grade;
     }
     
