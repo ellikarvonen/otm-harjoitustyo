@@ -13,4 +13,6 @@
 | 9.4.2018 | 2h | arvosanan ja tavoitearvosanan lisääminen | 
 | 10.4.2018 | 3h | testit, jacoco ja toiminnallisuutta lisää |
 | 12.4.2018 | 1.5h| testien tekoa |
-| **yhteensä** | 19.5h |
+| 12.4.2018| 1h | checkstyle |
+|13.4.2018 | 5h | tietokannanluonti koodissa, lisää testejä, bugien korjausta |
+| **yhteensä** | 25.5h |
