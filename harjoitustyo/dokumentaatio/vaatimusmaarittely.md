@@ -12,7 +12,7 @@ jolloin useampi käyttäjä voi käyttää sovellusta.
 
 ## Käyttöliittymäluonnos
 
-(https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/kayttoliittyma.JPG)
+![alt text](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/kayttoliittyma.JPG)
 
 ## Perusversion tarjoama toiminnallisuus
 - voi lisätä kursseja
