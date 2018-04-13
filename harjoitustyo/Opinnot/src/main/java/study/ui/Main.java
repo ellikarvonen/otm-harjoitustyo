@@ -24,6 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import study.dao.Statistics;
 
 
 public class Main extends Application {
@@ -36,6 +37,7 @@ public class Main extends Application {
     private CourseGradeDao cgd;
     private GradeDao gd;
     private CourseDao cd;
+    private Statistics stat;
     
     
     @Override
@@ -47,7 +49,8 @@ public class Main extends Application {
         cd = new CourseDao(db);
         cgd = new CourseGradeDao(db);
         gd = new GradeDao(db);
-        ss = new StudyService(cd, cgd);
+        stat = new Statistics(db);
+        ss = new StudyService(cd, cgd, stat);
         
         buttonNewCourse = new Button("Lisää uusi kurssi");
         buttonCourseGrade = new Button("Lisää kurssi suoritetuksi");
@@ -138,6 +141,10 @@ public class Main extends Application {
     }
     
     private Scene courseInformations() throws SQLException {
+        
+        Label textAvarage = new Label(ss.printAvarageGrade());
+        Label textSum = new Label(ss.printComplitedCoursesCreditSum());
+        
         Label textSelectCourse = new Label("Kurssitiedot");
         
         ChoiceBox<Course> choicebox = new ChoiceBox(FXCollections.observableArrayList(cd.findAll()));
@@ -153,7 +160,7 @@ public class Main extends Application {
         Button  buttonInfo = new Button("Tiedot");
         
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(textSelectCourse, choicebox, nameText2, printName, creditText2, printCredit, goalGradeText, printGoalGrade, gradeText, printGrade, buttonInfo, buttonHome);
+        vbox.getChildren().addAll(textAvarage, textSum, textSelectCourse, choicebox, nameText2, printName, creditText2, printCredit, goalGradeText, printGoalGrade, gradeText, printGrade, buttonInfo, buttonHome);
         
         Scene courseInformations = new Scene(vbox);
         
@@ -174,6 +181,7 @@ public class Main extends Application {
         Label textGrade = new Label("Saatu arvosana:");
        
         Button buttonAdd = new Button("Lisää");
+        Label textComplited = new Label("");
         
         ChoiceBox<Grade> grade = new ChoiceBox(FXCollections.observableArrayList(gd.findAll())); 
         grade.getSelectionModel().selectFirst();
@@ -181,13 +189,14 @@ public class Main extends Application {
 
         
         VBox vbox = new VBox();
-        vbox.getChildren().addAll(textSelectCourse, choicebox, textGrade, grade, buttonAdd, buttonHome);
+        vbox.getChildren().addAll(textSelectCourse, choicebox, textGrade, grade, buttonAdd,textComplited , buttonHome);
         
         Scene courseGradePage = new Scene(vbox);
         
         buttonAdd.setOnAction((event) -> {
+            textComplited.setText(ss.printCourseComplited(getChoiceCourse(choicebox).getName(), getChoiceGrade(grade)));
+            //ss.saveGrade(getChoiceCourse(choicebox).getName(), getChoiceGrade(grade));
             
-            ss.saveGrade(getChoiceCourse(choicebox).getName(), getChoiceGrade(grade));
         });
         
         return  courseGradePage;

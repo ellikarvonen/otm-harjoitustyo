@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import study.dao.Statistics;
 
 /**
  *
@@ -20,17 +21,20 @@ public class StudyService {
     
     private CourseDao cd;
     private CourseGradeDao cgd;
+    private Statistics stat;
     
-    public StudyService(CourseDao cd, CourseGradeDao cgd) {
+    public StudyService(CourseDao cd, CourseGradeDao cgd, Statistics stat) {
         this.cd = cd;
         this.cgd = cgd;
+        this.stat = stat;
     }
-    
+    //ONGELMAT:
+    //samalle kurssille voi lisätä useita suorituksia
     //Uuden kurssin lisääminen
     public boolean saveCourse(String name, String credit) {
        
         try {
-            if (courseNotExist(name) == true && creditIsInteger(credit) && courseNameIsTooLong(name) == false && courseNameIsEmpty(name) == false) {
+            if (courseNotExist(name) == true && creditIsInteger(credit) == true && courseNameIsTooLong(name) == false && courseNameIsEmpty(name) == false) {
                 Course course = new Course(name, Integer.parseInt(credit));
                 cd.save(course);
                 return true;
@@ -47,14 +51,21 @@ public class StudyService {
         if (saveCourse(name, credit) == true) {
             saveGoalGrade(name, grade);
             return "Kurssi lisätty!";
+            
         } else if ((courseNotExist(name) == false)) {
             return "Kurssi " + name + " on jo olemassa!";
+            
         } else if ((creditIsInteger(credit) == false)) { 
             return "Opintopisteiden tulee olla kokonaisnumero!";
+            
         } else if ((courseNameIsEmpty(name) == true)) { 
             return "Nimi ei saa olla tyhjä!";
-        } else {
+        
+        } else if ((courseNameIsTooLong(name) == true)) { 
             return "Kurssin nimi on liian pitkä. Sallittu merkkimäärä on 200.";
+            
+        } else {
+            return "Muu virhe";
         }
     }
     
@@ -72,10 +83,11 @@ public class StudyService {
     
     //kurssille arvosanan lisääminen suorittaessa
     public boolean saveGrade(String courseName, Grade grade) {
-        
         CourseGrade cg = new CourseGrade(courseName, grade.getGrade(), 0);
+        System.out.println("1");
         try {
             cgd.save(cg);
+            
         } catch (Exception ex) {
             return false;
         }
@@ -101,7 +113,6 @@ public class StudyService {
     }
     
     public boolean courseNotExist(String name) {
-        
         try {
             List list = cd.findAll().stream()
                     .filter(n -> n.getName().toLowerCase().equals(name.toLowerCase()))
@@ -126,7 +137,6 @@ public class StudyService {
     }
     
     public boolean creditIsInteger(String credit) {
-    
         try { 
             Integer.parseInt(credit); 
         } catch (NumberFormatException | NullPointerException e) { 
@@ -156,6 +166,24 @@ public class StudyService {
             i++;
         }
         return courses;
+    }
+    
+    public String printAvarageGrade() throws SQLException {
+        return "Kurssien keskiarvo: " + stat.gradeAvarage();
+    }
+    
+    public String printComplitedCoursesCreditSum() throws SQLException {
+        return "Opintopisteitä yhteensä: " + stat.completedCoursesCreditSum();
+    }
+    
+    public String printCourseComplited(String courseName, Grade grade) {
+        
+        if (saveGrade(courseName, grade) == true) {
+            return "Kurssin suoritus tallennettu!";
+        } else {
+            return "Virhe tallentamisessa!";
+        } 
+        
     }
     
 }

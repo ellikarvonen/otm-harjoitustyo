@@ -55,22 +55,25 @@ public class CourseDao implements Dao<Course, Integer> {
     @Override
     public Course save(Course course) throws SQLException {
         Connection conn = db.getConnection();
-           
+        
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO Course (name,credit) VALUES (?,?)");
-
+        
         stmt.setString(1, course.getName());
         stmt.setInt(2, course.getCredit());
         stmt.executeUpdate();
+        
 
         stmt.close();
        
         stmt = conn.prepareStatement("SELECT * FROM Course"
                 + " WHERE name = ? AND credit = ?");
+        System.out.println("stmt conn");
         stmt.setString(1, course.getName());
         stmt.setInt(2, course.getCredit());
 
         ResultSet rs = stmt.executeQuery();
         rs.next(); // vain 1 tulos
+        
 
         Course c = new Course(rs.getString("name"),
                 rs.getInt("credit"));

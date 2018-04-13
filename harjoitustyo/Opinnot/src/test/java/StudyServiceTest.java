@@ -23,6 +23,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import study.dao.Statistics;
 
 /**
  *
@@ -34,6 +35,7 @@ public class StudyServiceTest {
     CourseDao cd;
     CourseGradeDao cgd;
     Grade grade;
+    Statistics stat;
     
     public StudyServiceTest() {
     }
@@ -57,7 +59,7 @@ public class StudyServiceTest {
         grade = new Grade("4");
         cd = new CourseDao(db);
         cgd = new CourseGradeDao(db);
-        ss = new StudyService(cd, cgd);
+        ss = new StudyService(cd, cgd, stat);
     }
     
     @After
