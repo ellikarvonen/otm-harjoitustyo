@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 /**
- *
+ * This is database.
  * @author ellikarv
  */
 public class Database {
@@ -23,6 +23,11 @@ public class Database {
     
     private String databaseAddress;
     
+    /**
+     * a
+     * @param databaseAddress
+     * @throws ClassNotFoundException
+     */
     public Database(String databaseAddress) throws ClassNotFoundException {
         this.databaseAddress = databaseAddress;
     }
@@ -32,6 +37,9 @@ public class Database {
         return DriverManager.getConnection(databaseAddress);
     }
     
+    /**
+     * a
+     */
     public void init() {
         List<String> sqlite = sqliteStatements();
 
@@ -61,10 +69,10 @@ public class Database {
         list.add("INSERT INTO Grade (grade) VALUES ('-')");
         
         int grade = 0;
-        while (grade < 6){
+        while (grade < 6) {
             String statement = "INSERT INTO Grade (grade) VALUES ('" + grade + "');";
             list.add(statement);
-            grade ++;
+            grade++;
         }
 
         return list;

@@ -17,22 +17,38 @@ import java.util.List;
  */
 
 /**
- *
+ *a
  * @author ellikarv
  */
 public class GradeDao implements Dao<Grade, Integer> {
     
     private Database db;
     
+    /**
+     *a
+     * @param db
+     */
     public GradeDao(Database db) {
         this.db = db;
     }
 
+    /**a
+     *
+     * @param key
+     * @return a
+     * @throws SQLException
+     */
     @Override
     public Grade findOne(Integer key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *a
+     * @param grade
+     * @return a
+     * @throws SQLException
+     */
     @Override
     public Grade save(Grade grade) throws SQLException {
         Connection conn = db.getConnection();
@@ -67,6 +83,11 @@ public class GradeDao implements Dao<Grade, Integer> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * a
+     * @return a
+     * @throws SQLException
+     */
     @Override
     public List<Grade> findAll() throws SQLException {
         ArrayList<Grade> grades = new ArrayList<>();
@@ -87,6 +108,11 @@ public class GradeDao implements Dao<Grade, Integer> {
         return grades;
     }
 
+    /**
+     * a
+     * @param key
+     * @throws SQLException
+     */
     @Override
     public void delete(Integer key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

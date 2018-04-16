@@ -1,3 +1,5 @@
+package daoTest;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,8 +8,7 @@
 
 import study.dao.CourseDao;
 import study.dao.Database;
-import study.dao.GradeDao;
-import study.domain.Grade;
+import study.domain.Course;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,11 +28,11 @@ import static org.junit.Assert.*;
  *
  * @author ellikarv
  */
-public class GradeDaoTest {
+public class CourseDaoTest {
     
-    GradeDao gd;
+    CourseDao cd;
     
-    public GradeDaoTest() {
+    public CourseDaoTest() {
     }
     
     @BeforeClass
@@ -43,7 +44,7 @@ public class GradeDaoTest {
     }
     
     @Before
-    public void setUp() throws ClassNotFoundException, SQLException {
+    public void setUp() throws SQLException, ClassNotFoundException {
         File dbfile = new File("db");
         dbfile.mkdir();
         File tmp = new File("db/tmp-" + UUID.randomUUID().toString() + ".db");
@@ -51,20 +52,12 @@ public class GradeDaoTest {
 
         Database db = new Database("jdbc:sqlite:" + tmp.getAbsolutePath());
         
-        gd = new GradeDao(db);
+        cd = new CourseDao(db);
+        
     }
     
     @After
     public void tearDown() {
-    }
-    
-    @Test
-    public void findAllWorks() throws SQLException {
-        gd.save(new Grade("2"));
-        gd.save(new Grade("10"));
-        
-        assertEquals("2", gd.findAll().get(0).getGrade());
-        assertEquals("10", gd.findAll().get(1).getGrade());
     }
     
     private void initDbs(File dbfile) throws SQLException {
@@ -72,15 +65,12 @@ public class GradeDaoTest {
         String createCourse = "CREATE TABLE Course (name varchar(200), credit integer, PRIMARY KEY(name));";
         String createCourseGrade = "CREATE TABLE CourseGrade (integer id PRIMARY KEY, name varchar(200), grade varchar(20)," 
                 + "goal integer, FOREIGN KEY (name) REFERENCES Course(name), FOREIGN KEY(grade) REFERENCES Grade(grade));";
-        String createGrade = "CREATE TABLE Grade (grade varchar(20), PRIMARY KEY(grade));";
 
         List<String> list = new ArrayList<>();
         list.add("DROP TABLE IF EXISTS Course");
         list.add(createCourse);
         list.add("DROP TABLE IF EXISTS CourseGrade");
         list.add(createCourseGrade);
-        list.add("DROP TABLE IF EXISTS Grade");
-        list.add(createGrade);
 
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + dbfile.getAbsolutePath())) {
             Statement stmt = conn.createStatement();
@@ -92,6 +82,36 @@ public class GradeDaoTest {
             e.printStackTrace();
         }
 
+    }
+    
+    @Test
+    public void findAllWorks() throws SQLException {
+        cd.save(new Course("Test", 10));
+        cd.save (new Course("Course", 5));
+        
+        assertEquals("Test", cd.findAll().get(0).getName());
+        assertEquals("Course", cd.findAll().get(1).getName());
+        
+        int credit = cd.findAll().get(0).getCredit();
+        int credit2 = cd.findAll().get(1).getCredit();
+        
+        assertEquals(10, credit);
+        assertEquals(5, credit2);
+    }
+    
+    @Test
+    public void saveWorks() throws SQLException {
+        cd.save(new Course("Test", 10));
+        
+        assertEquals("Test", cd.findByName("Test").getName());
+        
+        int credit = cd.findByName("Test").getCredit();
+        assertEquals(10, credit);
+    }
+    
+    @Test 
+    public void notSupportedMethods() throws SQLException {
+        
     }
     
 }

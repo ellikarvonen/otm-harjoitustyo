@@ -15,7 +15,11 @@ public class Course {
     private String name;
     private Integer credit;
     
-
+    /**
+     * a
+     * @param name
+     * @param credit
+     */
     public Course(String name, Integer credit) {
         this.name = name;
         this.credit = credit;
@@ -29,18 +33,35 @@ public class Course {
 //        this.id = id;
 //    }
 
+    /**
+     * a
+     * @return a
+     */
+
     public String getName() {
         return name;
     }
 
+    /**
+     * a
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
     
+    /**
+     * a
+     * @return a
+     */
     public Integer getCredit() {
         return credit;
     }
     
+    /**
+     * a
+     * @param credit
+     */
     public void setCredit(Integer credit) {
         this.credit = credit;
     }

@@ -17,22 +17,38 @@ import java.util.List;
  */
 
 /**
- *
+ * This is CourseDao class.
  * @author ellikarv
  */
 public class CourseDao implements Dao<Course, Integer> {
 
     private Database db;
     
+    /**
+     * a
+     * @param db
+     */
     public CourseDao(Database db) {
         this.db = db;
     }
     
+    /**
+     * a
+     * @param key
+     * @return a
+     * @throws SQLException
+     */
     @Override
     public Course findOne(Integer key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    /**
+     * a
+     * @param name
+     * @return a
+     * @throws SQLException
+     */
     public Course findByName(String name) throws SQLException {
         Connection conn = db.getConnection();
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM Course WHERE name = ?");
@@ -52,6 +68,12 @@ public class CourseDao implements Dao<Course, Integer> {
 
     }
 
+    /**
+     * a
+     * @param course
+     * @return a
+     * @throws SQLException
+     */
     @Override
     public Course save(Course course) throws SQLException {
         Connection conn = db.getConnection();
@@ -62,11 +84,9 @@ public class CourseDao implements Dao<Course, Integer> {
         stmt.setInt(2, course.getCredit());
         stmt.executeUpdate();
         
-
         stmt.close();
        
-        stmt = conn.prepareStatement("SELECT * FROM Course"
-                + " WHERE name = ? AND credit = ?");
+        stmt = conn.prepareStatement("SELECT * FROM Course WHERE name = ? AND credit = ?");
         System.out.println("stmt conn");
         stmt.setString(1, course.getName());
         stmt.setInt(2, course.getCredit());
@@ -74,23 +94,32 @@ public class CourseDao implements Dao<Course, Integer> {
         ResultSet rs = stmt.executeQuery();
         rs.next(); // vain 1 tulos
         
-
         Course c = new Course(rs.getString("name"),
                 rs.getInt("credit"));
 
         stmt.close();
         rs.close();
-
         conn.close();
 
         return c;
     }
 
+    /**
+     * a
+     * @param element
+     * @return a
+     * @throws SQLException
+     */
     @Override
     public Course saveOrUpdate(Course element) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * a
+     * @return a
+     * @throws SQLException
+     */
     @Override
     public List<Course> findAll() throws SQLException {
         //luodaan kursseille lista
@@ -115,6 +144,11 @@ public class CourseDao implements Dao<Course, Integer> {
         
     }
 
+    /**
+     * a 
+     * @param key
+     * @throws SQLException
+     */
     @Override
     public void delete(Integer key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -98,6 +98,7 @@ public class Main extends Application {
         return c;
     }
     
+    
     private Grade getChoiceGrade(ChoiceBox<Grade> cb) {
         Grade g = cb.getValue();
         return g;

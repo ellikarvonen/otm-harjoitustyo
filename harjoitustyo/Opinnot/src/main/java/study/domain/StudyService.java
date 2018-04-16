@@ -30,6 +30,7 @@ public class StudyService {
     }
     //ONGELMAT:
     //samalle kurssille voi lisätä useita suorituksia
+    
     //Uuden kurssin lisääminen
     public boolean saveCourse(String name, String credit) {
        
@@ -84,7 +85,6 @@ public class StudyService {
     //kurssille arvosanan lisääminen suorittaessa
     public boolean saveGrade(String courseName, Grade grade) {
         CourseGrade cg = new CourseGrade(courseName, grade.getGrade(), 0);
-        System.out.println("1");
         try {
             cgd.save(cg);
             
@@ -128,7 +128,7 @@ public class StudyService {
         return false;
     }
     
-    public boolean courseNameIsEmpty(String name){
+    public boolean courseNameIsEmpty(String name) {
         return name.isEmpty();
     }
     

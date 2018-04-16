@@ -18,11 +18,20 @@ public class Statistics {
     
     private Database db;
     
+    /**
+     *
+     * @param db
+     */
     public Statistics(Database db) {
         this.db = db;
     }
     
-    public int completedCoursesCreditSum() throws SQLException{
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
+    public int completedCoursesCreditSum() throws SQLException {
         Connection conn = db.getConnection();
         
         PreparedStatement stmt = conn.prepareStatement("SELECT SUM(credit) FROM Course, CourseGrade WHERE CourseGrade.name = Course.name AND CourseGrade.goal = 0");
@@ -31,7 +40,12 @@ public class Statistics {
         return rs.getInt(1);
     }
     
-    public double gradeAvarage() throws SQLException{
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
+    public double gradeAvarage() throws SQLException {
         Connection conn = db.getConnection();
         
         PreparedStatement stmt = conn.prepareStatement("SELECT AVG(grade) FROM CourseGrade, Course WHERE CourseGrade.name = Course.name AND CourseGrade.goal = 0");

@@ -19,23 +19,38 @@ import java.util.List;
  */
 
 /**
- *
+ *a
  * @author ellikarv
  */
 public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
     
     private Database db;
     
-    
+    /**
+     *a
+     * @param db
+     */
     public CourseGradeDao(Database db) {
         this.db = db;
     }
 
+    /**
+     *a
+     * @param key
+     * @return a
+     * @throws SQLException
+     */
     @Override
     public CourseGrade findOne(Integer key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *a 
+     * @param cg
+     * @return a
+     * @throws SQLException
+     */
     @Override
     public CourseGrade save(CourseGrade cg) throws SQLException {
         Connection conn = db.getConnection();
@@ -53,21 +68,44 @@ public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
         return cg;
     }
 
+    /**
+     *a
+     * @param element
+     * @return a
+     * @throws SQLException
+     */
     @Override
     public CourseGrade saveOrUpdate(CourseGrade element) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *a
+     * @return a
+     * @throws SQLException
+     */
     @Override
     public List<CourseGrade> findAll() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *a 
+     * @param key
+     * @throws SQLException
+     */
     @Override
     public void delete(Integer key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    /**
+     *a
+     * @param name
+     * @param goal
+     * @return a
+     * @throws SQLException
+     */
     public Grade findGrade(String name, Integer goal) throws SQLException {
         Connection conn = db.getConnection();
         PreparedStatement stmt = conn.prepareStatement("SELECT * FROM CourseGrade WHERE  name = ? AND goal = ?");
@@ -90,6 +128,11 @@ public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
         return g;
     }
     
+    /**
+     *a 
+     * @return a
+     * @throws SQLException
+     */
     public List<CourseGrade> findAllCompletedCourses() throws SQLException {
         //luodaan kursseille lista
         ArrayList<CourseGrade> courses = new ArrayList<>();
