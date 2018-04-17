@@ -14,4 +14,5 @@
 | 12.4.2018| 1h | checkstyle |
 |13.4.2018 | 5h | tietokannanluonti koodissa, lisää testejä, bugien korjausta |
 |16.4.2018| 2,5h | checkstyle ja bugien korjailua|
-| **yhteensä** | 24h |
+|17.4.2018|2h| testejä, bugin korjaus, pakkauskaavio|
+| **yhteensä** | 26h |
