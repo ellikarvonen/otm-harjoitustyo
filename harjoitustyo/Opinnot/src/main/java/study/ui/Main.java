@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javafx.scene.control.Button;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -38,7 +39,7 @@ public class Main extends Application {
     private GradeDao gd;
     private CourseDao cd;
     private Statistics stat;
-    
+    private Stage stage;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -57,6 +58,8 @@ public class Main extends Application {
         buttonCourseInfo = new Button("Kurssitiedot");
         buttonHome = new Button("Etusivulle");
         
+        this.stage = stage;
+        
         buttonHome.setOnAction((event) -> {
             stage.setScene(this.home());
         });
@@ -71,7 +74,7 @@ public class Main extends Application {
         
         buttonCourseGrade.setOnAction((event) -> {
             try {
-                if (ss.findAllNotCompletedCourses().isEmpty()) {
+                if (ss.findAllUncompletedCourses().isEmpty()) {
                     stage.setScene(noCoursesPage());
                 } else {
                     stage.setScene(courseGradePage());
@@ -176,11 +179,15 @@ public class Main extends Application {
         return courseInformations;    
     }
     
+    ChoiceBox<Course> choicebox;
+    Course course;
+    
     private Scene courseGradePage() throws SQLException {
         Label textSelectCourse = new Label("Valitse kurssi");
-        ChoiceBox<Course> choicebox = new ChoiceBox(FXCollections.observableArrayList(ss.findAllNotCompletedCourses()));
+        ObservableList<Course> uncompletedCourses = FXCollections.observableArrayList(ss.findAllUncompletedCourses());
+        choicebox = new ChoiceBox(uncompletedCourses);
         Label textGrade = new Label("Saatu arvosana:");
-       
+        System.out.println("kurssisivu luodaan");
         Button buttonAdd = new Button("Lisää");
         Label textComplited = new Label("");
         
@@ -195,9 +202,22 @@ public class Main extends Application {
         Scene courseGradePage = new Scene(vbox);
         
         buttonAdd.setOnAction((event) -> {
-            textComplited.setText(ss.printCourseComplited(getChoiceCourse(choicebox).getName(), getChoiceGrade(grade)));
-            //ss.saveGrade(getChoiceCourse(choicebox).getName(), getChoiceGrade(grade));
+            String name = getChoiceCourse(choicebox).getName();
             
+            Grade g = getChoiceGrade(grade);
+
+            textComplited.setText(ss.saveCourseComplited(name, g));
+            
+            int index = uncompletedCourses.indexOf(getChoiceCourse(choicebox));
+            uncompletedCourses.remove(index);
+            choicebox.getSelectionModel().selectFirst();
+
+            
+            if(uncompletedCourses.isEmpty()){
+                stage.setScene(noCoursesPage());
+            }
+            
+                       
         });
         
         return  courseGradePage;

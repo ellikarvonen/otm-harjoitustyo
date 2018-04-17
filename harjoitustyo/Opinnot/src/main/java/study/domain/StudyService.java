@@ -145,16 +145,17 @@ public class StudyService {
         return true;
     }
     
-    public List<Course> findAllNotCompletedCourses() throws SQLException {
+    public List<Course> findAllUncompletedCourses() throws SQLException {
         List<Course> allCourses = cd.findAll();
+        List<CourseGrade> courseGrades = cgd.findAllCompletedCourses();
         List<Course> courses = new ArrayList<>();
         int i = 0;
         
         while (i < allCourses.size()) {
             int index = 0;
             int calc = 0;
-            while (index < cgd.findAllCompletedCourses().size()) {
-                if (allCourses.get(i).getName().equals(cgd.findAllCompletedCourses().get(index).getCourse())) {
+            while (index < courseGrades.size()) {
+                if (allCourses.get(i).getName().equals(courseGrades.get(index).getCourse())) {
                     calc++;
                 }
                 index++;
@@ -176,10 +177,10 @@ public class StudyService {
         return "Opintopisteitä yhteensä: " + stat.completedCoursesCreditSum();
     }
     
-    public String printCourseComplited(String courseName, Grade grade) {
+    public String saveCourseComplited(String courseName, Grade grade) {
         
         if (saveGrade(courseName, grade) == true) {
-            return "Kurssin suoritus tallennettu!";
+            return "Kurssin suoritus" + courseName + "tallennettu!";
         } else {
             return "Virhe tallentamisessa!";
         } 

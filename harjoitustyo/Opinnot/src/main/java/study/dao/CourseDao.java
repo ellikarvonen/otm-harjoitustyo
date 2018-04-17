@@ -87,7 +87,7 @@ public class CourseDao implements Dao<Course, Integer> {
         stmt.close();
        
         stmt = conn.prepareStatement("SELECT * FROM Course WHERE name = ? AND credit = ?");
-        System.out.println("stmt conn");
+        
         stmt.setString(1, course.getName());
         stmt.setInt(2, course.getCredit());
 
