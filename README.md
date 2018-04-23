@@ -9,4 +9,10 @@
 
 ## Komentorivitoiminnot
 
+#Testaus
 
+Komento testien suorittamiseen
+
+<span style="color:blue">some *This is Blue italic.* text</span>
+
+Komento 
