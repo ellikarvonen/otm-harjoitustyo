@@ -11,8 +11,8 @@
 
 #Testaus
 
-Komento testien suorittamiseen
+Komento testien suorittamiseen: **mvn test**
 
-<span style="color:blue">some *This is Blue italic.* text</span>
+Komento testiraportin luomiseen: **mvn jacoco:report*
 
-Komento 
+Kattavuusraporttia pystyy tarkastelemaan avaamalla selaimella target/site/jacoco/index.html.
