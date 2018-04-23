@@ -9,7 +9,7 @@
 
 ## Komentorivitoiminnot
 
-#Testaus
+# Testaus
 
 Komento testien suorittamiseen: **mvn test**
 
@@ -18,7 +18,7 @@ Komento testiraportin luomiseen: **mvn jacoco:report**
 Kattavuusraporttia pystyy tarkastelemaan avaamalla selaimella target/site/jacoco/index.html.
 
 
-#Checkstyle
+# Checkstyle
 
 Tarkistukset, jotka määritellään tiedostossa [checkstyle.xml](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/Opinnot/checkstyle.xml) voi suorittaa komennolla: ** mvn jxr:jxr checkstyle:checkstyle**
 
