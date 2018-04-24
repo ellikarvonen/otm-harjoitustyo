@@ -16,5 +16,7 @@
 |16.4.2018| 2.5h | checkstyle ja bugien korjailua|
 |17.4.2018|2h| testejä, bugin korjaus, pakkauskaavio|
 |18.4.2018|2h| tietokannan parantelu ja graafisen käyttöliittymän parantamista|
-|20.4.2018|2.5h|testejä|
-| **yhteensä** | 30.5h |
+|20.4.2018|2.5h| testejä |
+|23.4.2018|2.5h | SQL-kyselyiden miettimistä|
+|24.4.2018| 3h |metodien siistimistä, kurssin poistamismahdollisuus, jar |
+| **yhteensä** | 36h |
