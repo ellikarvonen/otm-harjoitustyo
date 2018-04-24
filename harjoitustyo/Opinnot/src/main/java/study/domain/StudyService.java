@@ -28,8 +28,7 @@ public class StudyService {
         this.cgd = cgd;
         this.stat = stat;
     }
-    //ONGELMAT:
-    //samalle kurssille voi lisätä useita suorituksia
+    
     
     //Uuden kurssin lisääminen
     public boolean saveCourse(String name, String credit) {
@@ -145,42 +144,23 @@ public class StudyService {
         return true;
     }
     
-    public List<Course> findAllUncompletedCourses() throws SQLException {
-        List<Course> allCourses = cd.findAll();
-        List<CourseGrade> courseGrades = cgd.findAllCompletedCourses();
-        List<Course> courses = new ArrayList<>();
-        int i = 0;
-        
-        while (i < allCourses.size()) {
-            int index = 0;
-            int calc = 0;
-            while (index < courseGrades.size()) {
-                if (allCourses.get(i).getName().equals(courseGrades.get(index).getCourse())) {
-                    calc++;
-                }
-                index++;
-            }
-            if (calc == 0) {
-                courses.add(allCourses.get(i));
-            }
-            calc = 0;
-            i++;
-        }
-        return courses;
-    }
-    
+
     public String printAvarageGrade() throws SQLException {
-        return "Kurssien keskiarvo: " + stat.gradeAvarage();
+        return "Suoritettujen kurssien keskiarvo: " + stat.gradeAvarage();
     }
     
     public String printComplitedCoursesCreditSum() throws SQLException {
-        return "Opintopisteitä yhteensä: " + stat.completedCoursesCreditSum();
+        return "Suoritettuja opintopisteitä yhteensä: " + stat.completedCoursesCreditSum();
     }
+    
+//    public String printcountSucceesCourses() throws SQLException {
+//        return "Tavoite saavutettu: " + stat.countSucceesCourses() +":sta suoritetuista kursseista";
+//    }
     
     public String saveCourseComplited(String courseName, Grade grade) {
         
         if (saveGrade(courseName, grade) == true) {
-            return "Kurssin suoritus" + courseName + "tallennettu!";
+            return "Kurssin suoritus " + courseName + " tallennettu!";
         } else {
             return "Virhe tallentamisessa!";
         } 

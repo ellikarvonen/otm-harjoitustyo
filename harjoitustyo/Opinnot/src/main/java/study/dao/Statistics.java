@@ -9,6 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import static jdk.nashorn.internal.objects.NativeMath.round;
+import study.domain.CourseGrade;
+import study.domain.Grade;
 
 /**
  *
@@ -17,12 +21,14 @@ import java.sql.SQLException;
 public class Statistics {
     
     private Database db;
+    private CourseGradeDao cd;
     
     /**
      *
      * @param db
      */
     public Statistics(Database db) {
+        this.cd = new CourseGradeDao(db);
         this.db = db;
     }
     
@@ -34,10 +40,16 @@ public class Statistics {
     public int completedCoursesCreditSum() throws SQLException {
         Connection conn = db.getConnection();
         
-        PreparedStatement stmt = conn.prepareStatement("SELECT SUM(credit) FROM Course, CourseGrade WHERE CourseGrade.name = Course.name AND CourseGrade.goal = 0");
+        PreparedStatement stmt = conn.prepareStatement("SELECT SUM(credit) FROM Course, CourseGrade WHERE CourseGrade.name = Course.name AND CourseGrade.goal = 0 AND CourseGrade.grade IN ('1','2','3','4','5')");
         ResultSet rs = stmt.executeQuery();
         
-        return rs.getInt(1);
+        int sum = rs.getInt(1);
+        
+        rs.close();
+        conn.close();
+        
+        return sum;
+        
     }
     
     /**
@@ -48,10 +60,37 @@ public class Statistics {
     public double gradeAvarage() throws SQLException {
         Connection conn = db.getConnection();
         
-        PreparedStatement stmt = conn.prepareStatement("SELECT AVG(grade) FROM CourseGrade, Course WHERE CourseGrade.name = Course.name AND CourseGrade.goal = 0");
+        PreparedStatement stmt = conn.prepareStatement("SELECT AVG(grade) FROM CourseGrade WHERE CourseGrade.goal = 0 AND CourseGrade.grade IN ('1','2','3','4','5')");
         ResultSet rs = stmt.executeQuery();
         
-        return rs.getDouble(1);
+        double avarage = rs.getDouble(1);
+         
+        rs.close();
+        conn.close();
+        
+        return Math.round(avarage);
+        
     }
+    
+//    public String countSucceesCourses() throws SQLException {
+//        List<CourseGrade> goal = cd.findAllCoursesWithGoal();
+//        List<CourseGrade> completed = cd.findAllCompletedCoursesWithGoal();
+//        int gradeIsBigger = 0;
+//        
+//        int index = 0;
+//        while (index < completed.size()){
+//            int index2 = 0;
+//            while (index2 < goal.size()){
+//                if (completed.get(index).getCourse().equals(goal.get(index2).getCourse()) && 
+//                        Integer.parseInt(completed.get(index).getGrade()) >= Integer.parseInt(goal.get(index2).getGrade())) {
+//                    gradeIsBigger++;
+//                }
+//                index2 ++;
+//            }
+//            index ++;
+//        }
+//        
+//        return gradeIsBigger + "/" + completed.size(); 
+//    }
     
 }

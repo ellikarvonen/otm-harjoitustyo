@@ -26,6 +26,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import study.dao.Statistics;
+import study.domain.Course;
 
 /**
  *
@@ -61,7 +62,9 @@ public class StudyServiceTest {
         grade = new Grade("4");
         cd = new CourseDao(db);
         cgd = new CourseGradeDao(db);
+        stat = new Statistics(db);
         ss = new StudyService(cd, cgd, stat);
+        
     }
     
     @After
@@ -104,14 +107,37 @@ public class StudyServiceTest {
         ss.saveGrade("OTM", grade);
         assertEquals("4", ss.printGrade("OTM"));
     } 
-           
     
+    @Test
+    public void printAvarageGradeWorks() throws SQLException {
+        ss.saveGrade("OTM", grade);
+        ss.saveGrade("Tikape", grade);
+        
+        assertEquals("Suoritettujen kurssien keskiarvo: 4.0", ss.printAvarageGrade());
+    }
+    
+    @Test
+    public void printComplitedCoursesCreditSumWorks() throws SQLException {
+        ss.saveCourse("Otm", "5");
+        ss.saveCourse("t", "3");
+        ss.saveGrade("Otm", grade);
+        ss.saveGrade("t", grade);
+        
+        assertEquals("Suoritettuja opintopisteitä yhteensä: 8", ss.printComplitedCoursesCreditSum());
+    }
+    
+    @Test
+    public void saveCourseComplitedWorks(){
+        assertEquals("Kurssin suoritus OTM tallennettu!", ss.saveCourseComplited("OTM", grade));
+    }
+ 
     private void initDbs(File dbfile) throws SQLException {
 
         String createCourse = "CREATE TABLE Course (name varchar(200), credit integer, PRIMARY KEY(name));";
         String createCourseGrade = "CREATE TABLE CourseGrade (integer id PRIMARY KEY, name varchar(200), grade varchar(20)," 
                 + "goal integer, FOREIGN KEY (name) REFERENCES Course(name), FOREIGN KEY(grade) REFERENCES Grade(grade));";
 
+        
         List<String> list = new ArrayList<>();
         list.add("DROP TABLE IF EXISTS Course");
         list.add(createCourse);
@@ -139,6 +165,8 @@ public class StudyServiceTest {
         }
         return s;
     }
+    
+    
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:

@@ -107,6 +107,31 @@ public class GradeDao implements Dao<Grade, Integer> {
         
         return grades;
     }
+    
+    public List<Grade> findAllNumbers() throws SQLException {
+        List<Grade> all = findAll();
+        List<Grade> allNumbers = new ArrayList<>();
+        
+        int index = 0;
+        boolean number;
+        
+        while (index < all.size()) {
+            try { 
+                Integer.parseInt(all.get(index).toString());
+                allNumbers.add(all.get(index));
+               
+            } catch (NumberFormatException | NullPointerException e) { 
+               
+            }
+            
+            index++;
+        }
+        
+        return allNumbers;
+        
+        
+    }
+        
 
     /**
      * a

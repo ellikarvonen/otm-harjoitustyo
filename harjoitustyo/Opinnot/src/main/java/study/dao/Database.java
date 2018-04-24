@@ -48,13 +48,11 @@ public class Database {
 
             // suoritetaan komennot
             for (String s : sqlite) {
-                System.out.println("Running command >> " + s);
                 st.executeUpdate(s);
             }
 
         } catch (Throwable t) {
-            // jos tietokantataulu on jo olemassa, ei komentoja suoriteta
-            System.out.println("Error >> " + t.getMessage());
+            
         }
     }
 
@@ -63,8 +61,8 @@ public class Database {
 
         // tietokantataulujen luominen
         list.add("CREATE TABLE Course (name varchar(200), credit integer, PRIMARY KEY(name));");
-        list.add("CREATE TABLE CourseGrade (integer id PRIMARY KEY, name varchar(200), grade varchar(20)," 
-                + "goal integer, FOREIGN KEY (name) REFERENCES Course(name), FOREIGN KEY(grade) REFERENCES Grade(grade));");
+        list.add("CREATE TABLE CourseGrade (name varchar(200), grade varchar(20)," 
+                + "goal integer, PRIMARY KEY (name, goal), FOREIGN KEY (name) REFERENCES Course(name), FOREIGN KEY(grade) REFERENCES Grade(grade));");
         list.add("CREATE TABLE Grade (grade varchar(20), PRIMARY KEY(grade));");
         list.add("INSERT INTO Grade (grade) VALUES ('-')");
         

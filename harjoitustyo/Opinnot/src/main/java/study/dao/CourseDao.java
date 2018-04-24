@@ -76,32 +76,35 @@ public class CourseDao implements Dao<Course, Integer> {
      */
     @Override
     public Course save(Course course) throws SQLException {
+        
         Connection conn = db.getConnection();
         
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO Course (name,credit) VALUES (?,?)");
         
         stmt.setString(1, course.getName());
         stmt.setInt(2, course.getCredit());
+       
         stmt.executeUpdate();
+        
         
         stmt.close();
        
-        stmt = conn.prepareStatement("SELECT * FROM Course WHERE name = ? AND credit = ?");
-        
-        stmt.setString(1, course.getName());
-        stmt.setInt(2, course.getCredit());
-
-        ResultSet rs = stmt.executeQuery();
-        rs.next(); // vain 1 tulos
-        
-        Course c = new Course(rs.getString("name"),
-                rs.getInt("credit"));
-
-        stmt.close();
-        rs.close();
+//        stmt = conn.prepareStatement("SELECT * FROM Course WHERE name = ? AND credit = ?");
+//        
+//        stmt.setString(1, course.getName());
+//        stmt.setInt(2, course.getCredit());
+//
+//        ResultSet rs = stmt.executeQuery();
+//        rs.next(); // vain 1 tulos
+//        
+//        Course c = new Course(rs.getString("name"),
+//                rs.getInt("credit"));
+//
+//        stmt.close();
+//        rs.close();
         conn.close();
-
-        return c;
+       
+        return course;
     }
 
     /**
@@ -152,6 +155,38 @@ public class CourseDao implements Dao<Course, Integer> {
     @Override
     public void delete(Integer key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void deleteByName(String name) throws SQLException {
+        Connection conn = db.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("DELETE FROM Course WHERE name = ?");
+
+        stmt.setString(1, name);
+        stmt.executeUpdate();
+
+        stmt.close();
+        conn.close();
+    }
+    
+    public List<Course> findAllUncompletedCourses() throws SQLException {
+        ArrayList<Course> courses = new ArrayList<>();
+       
+        Connection con = db.getConnection();
+        //Luodaan kysely
+        PreparedStatement stmt = con.prepareStatement("SELECT DISTINCT * FROM Course WHERE Course.name not in (SELECT CourseGrade.name FROM CourseGrade WHERE goal=0)");
+        //Palautetaan tuloksen sisältävän rs-olion
+        ResultSet rs = stmt.executeQuery();
+        //Käydään tulokset läpi ja lisätään ne listalle
+        while (rs.next()) {
+            Course c = new Course(rs.getString("name"), rs.getInt("credit"));
+            courses.add(c);
+        }
+        //suljetaan yhteyksiä yms.
+        stmt.close();
+        rs.close();
+        con.close();
+        // palautetaan kurssien lista
+        return courses;
     }
     
 }
