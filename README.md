@@ -7,6 +7,9 @@
 
 [Arkkitehtuurikuvaus](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/arkkitehtuuri.md)
 
+## Releaset
+[viikko 5](https://github.com/ellikarvonen/otm-harjoitustyo/releases)
+
 ## Komentorivitoiminnot
 
 ### Testaus
@@ -16,6 +19,11 @@ Komento testien suorittamiseen: **mvn test**
 Komento testiraportin luomiseen: **mvn jacoco:report**
 
 Kattavuusraporttia pystyy tarkastelemaan avaamalla selaimella target/site/jacoco/index.html.
+
+### Suoritettavan jarin generointi
+
+Komento jar-tiedoston generointiin: **mvn package**
+Tiedosto Opinnot-1.0-SNAPSHOT.jar on hakemistossa *target*.
 
 
 ### Checkstyle
