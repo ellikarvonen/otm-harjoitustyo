@@ -23,6 +23,7 @@ Kattavuusraporttia pystyy tarkastelemaan avaamalla selaimella target/site/jacoco
 ### Suoritettavan jarin generointi
 
 Komento jar-tiedoston generointiin: **mvn package**
+
 Tiedosto Opinnot-1.0-SNAPSHOT.jar on hakemistossa *target*.
 
 
