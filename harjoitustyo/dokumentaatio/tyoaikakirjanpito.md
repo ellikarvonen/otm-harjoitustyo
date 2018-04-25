@@ -19,4 +19,5 @@
 |20.4.2018|2.5h| testejä |
 |23.4.2018|2.5h | SQL-kyselyiden miettimistä, sekvenssikaavio|
 |24.4.2018| 3h |metodien siistimistä, kurssin poistamismahdollisuus, jar |
-| **yhteensä** | 36h |
+|25.4.2018| 1.5h |testejä ja graafista käyttöliittymää|
+| **yhteensä** | 37.5h |
