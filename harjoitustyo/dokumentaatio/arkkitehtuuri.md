@@ -22,6 +22,14 @@ Kaikki näkymät ovat toteutettu Scene-oliona. Vain yksi sivu näkyy kerrallaan.
 
 Käyttöliittymä on erillään sovelluslogiikasta ja se kutsuu sovelluslogiikasta studyService luokkaa sekä tarvittaessa, kuten poistamisessa ja listaamisessa, myös dao luokkia.
 
+## Sovelluslogiikka
+
+Sovelluslogiikasta huolehtii luokka study.domain.studyService luokka. Luokka tarjoaa käyttöliittymälle metodeja, kuten:
+- String saveCourseAndGoalGrade(String name, String credit, Grade grade)
+- String printAvarageGrade()
+- String printComplitedCoursesCreditSum()
+- String saveCourseComplited(String courseName, Grade grade)
+
 ## Tietojen pysyväistallennus
 
 Pakkauksen study.dao luokat huolehtivat tietojen tallentamisesta ja poistamisesta *study.db* tietokantaan. Tiedot tallennetaan kolmeen eri tietokantatauluun, jotka ovat Course, CourseGrade ja Grade. Tietokanta on SQLite3-tietokanta.
