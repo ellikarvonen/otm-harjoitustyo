@@ -56,6 +56,19 @@ public class CourseGradeTest {
         assertEquals(1, goal);
     }
     
+    @Test
+    public void setGradeWorks() {
+        cg.setGrade("4");
+        assertEquals("4", cg.getGrade());
+    }
+    
+    @Test
+    public void setGoalWorks() {
+    cg.setGoal(0);
+    int goal = cg.getGoal();
+    assertEquals(0, goal);
+}
+    
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //

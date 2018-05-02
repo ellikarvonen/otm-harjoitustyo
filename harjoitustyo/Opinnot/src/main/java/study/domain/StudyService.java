@@ -229,7 +229,6 @@ public class StudyService {
      * @param grade arvosana
      * @return viesti
      */
-    
     public String saveCourseComplited(String courseName, Grade grade) {
         
         if (saveGrade(courseName, grade) == true) {
@@ -238,6 +237,56 @@ public class StudyService {
             return "Virhe tallentamisessa!";
         } 
         
+    }
+    
+    /**
+     * Päivittää opintopistemäärän ja palauttaa viestin joka kertoo onnistuiko päivitys.
+     * @param name kurssin nimi
+     * @param credit opintopisteet
+     * @return viesti joka kertoo onnistuiko päivitys
+     * @throws SQLException tietokanta virhe
+     */
+    public String updateCredit(String name, String credit) throws SQLException {
+        if (this.creditIsInteger(credit) == true) {
+            cd.updateCredit(name, Integer.parseInt(credit));
+            return "Opintopistemäärä päivitetty";
+        }
+        if (this.creditIsInteger(credit) == false && !credit.isEmpty()) {
+            return "Virhe päivittämisessä. Opintopisteiden tulee olla kokonaisnumero.";
+        }
+        return "";
+    }
+    
+    /**
+     * Päivittää arvosanatavoitteen.
+     * @param name kurssin nimi
+     * @param grade arvosana
+     * @return viesti 
+     * @throws SQLException tietokanta virhe
+     */
+    public String updateGoalGrade(String name, String grade) throws SQLException {
+        cgd.updateGrade(name, grade, 1);
+        return "Tavoitearvosana päivitetty";
+        
+    }
+    
+    /**
+     * Päivitä arvosana. Tarkistaa voiko arvosanan päivittää.
+     * @param name kurssin nimi
+     * @param grade arvosana
+     * @return Palauttaa viestin käyttäjälle, voiko arvosanan päivittää.
+     * @throws SQLException
+     */
+    public String updateGrade(String name, String grade) throws SQLException {
+        try {
+            if (cgd.findByNameComplitedCourse(name) == true) {
+                cgd.updateGrade(name, grade, 0);
+                return "Arvosana päivitetty";
+            }
+        } catch (NullPointerException ex) {
+            
+        }
+        return "Kurssiarvosanaa ei voitu päivittää, koska kurssia ei ole suoritettu.";
     }
     
 }

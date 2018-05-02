@@ -130,6 +130,40 @@ public class StudyServiceTest {
     public void saveCourseComplitedWorks(){
         assertEquals("Kurssin suoritus OTM tallennettu!", ss.saveCourseComplited("OTM", grade));
     }
+    
+    @Test
+    public void updateCreditWorks() throws SQLException {
+        ss.saveCourseAndGoalGrade("Otm", "3", grade);
+        assertEquals("Opintopistemäärä päivitetty", ss.updateCredit("Otm", "1"));
+        assertEquals("Virhe päivittämisessä. Opintopisteiden tulee olla kokonaisnumero.", ss.updateCredit("Otm", "credit"));
+        
+    }
+    @Test 
+    public void updateCreditSetCreditRight() throws SQLException {
+        ss.saveCourseAndGoalGrade("Otm", "3", grade);
+        ss.updateCredit("Otm", "10");
+        int credit = cd.findByName("Otm").getCredit();
+        assertEquals(10 , credit);
+    }
+    
+    @Test
+    public void updateGoalGradeWorks() throws SQLException{
+        ss.saveCourseAndGoalGrade("Otm", "3", grade);
+        assertEquals("Tavoitearvosana päivitetty",ss.updateGoalGrade("Otm", "6"));
+        assertEquals("6", cgd.findGrade("Otm",1).getGrade());
+    }
+    
+    @Test 
+    public void updateGradeWorks() throws SQLException {
+        ss.saveCourseAndGoalGrade("Otm", "3", grade);
+        ss.saveCourseComplited("Otm", new Grade("5"));
+        
+        assertEquals("Arvosana päivitetty", ss.updateGrade("Otm", "3"));
+        assertEquals("3", cgd.findGrade("Otm",0).getGrade());
+        
+        ss.saveCourseAndGoalGrade("tikape", "3", grade);
+        assertEquals("Kurssiarvosanaa ei voitu päivittää, koska kurssia ei ole suoritettu.", ss.updateGrade("tikape", "3"));
+    }
  
     private void initDbs(File dbfile) throws SQLException {
 
@@ -165,6 +199,8 @@ public class StudyServiceTest {
         }
         return s;
     }
+    
+    
     
     
 

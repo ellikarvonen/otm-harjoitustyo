@@ -271,11 +271,18 @@ public class Main extends Application {
     }
     
     private Scene updateCourses() throws SQLException {
-        Label header = new Label("Muuta kurssin tietoja. TÄMÄ EI VIELÄ TOIMI");
-        Label text = new Label("Valitse ensin kurssi, jonka tietoja haluat muuttaa. Saat näkyviin kurssin tämän hetkiset tiedot painamalla Näytä tiedot -nappia. Päivitä tiedot laittamalla uudet tiedot kenttiin.");
+        Label header = new Label("Muuta kurssin tietoja.");
+        Label text = new Label("Valitse ensin kurssi, jonka tietoja haluat muuttaa. "
+                + "Saat näkyviin kurssin tämän hetkiset tiedot painamalla Näytä tiedot -nappia. "
+                + "Päivitä tiedot laittamalla uudet tiedot kenttiin.");
         header.setFont(new Font("Arial", 20));
         
         Label text1 = new Label("Valitse kurssi");
+        
+        Label textUpdateCredit = new Label("");
+        Label textUpdateGoalGrade = new Label("");
+        Label textUpdateGrade = new Label("");
+        
         
         ObservableList<Course> courses = FXCollections.observableArrayList(cd.findAll());
         choicebox = new ChoiceBox(courses);
@@ -297,10 +304,8 @@ public class Main extends Application {
         TextField courseCredit = new TextField();
         
         ChoiceBox<Grade> goalGrade = new ChoiceBox(FXCollections.observableArrayList(gd.findAll())); 
-        goalGrade.getSelectionModel().selectFirst();
         
         ChoiceBox<Grade> grade = new ChoiceBox(FXCollections.observableArrayList(gd.findAllNumbers())); 
-        grade.getSelectionModel().selectFirst();
         
         button.setOnAction((event) ->  {
             printName.setText(getChoiceCourse(choicebox).getName());
@@ -308,6 +313,25 @@ public class Main extends Application {
             printGoalGrade.setText(ss.printGoalGrade(getChoiceCourse(choicebox).getName()));
             printGrade.setText(ss.printGrade(getChoiceCourse(choicebox).getName()));
             
+        });
+        
+        buttonUpdate.setOnAction((event) ->  {
+            try {
+                textUpdateCredit.setText(ss.updateCredit(getChoiceCourse(choicebox).getName(), courseCredit.getText()));
+                try {
+                    textUpdateGoalGrade.setText(ss.updateGoalGrade(getChoiceCourse(choicebox).getName(), getChoiceGrade(goalGrade).getGrade()));
+                    
+                } catch (NullPointerException ex) {
+                    
+                } try {
+                    textUpdateGrade.setText(ss.updateGrade(getChoiceCourse(choicebox).getName(), getChoiceGrade(grade).getGrade()));
+                    
+                } catch (NullPointerException ex) {
+                    
+                }
+            } catch (SQLException ex) {
+                
+            }
         });
         
         
@@ -337,7 +361,8 @@ public class Main extends Application {
         vbox.getChildren().addAll(header,text, text1,choicebox,button, nameText, printName, 
                 creditText, printCredit, courseCredit,
                 goalGradeText, printGoalGrade,goalGrade,
-                gradeText, printGrade, grade, buttonUpdate, text2, buttonDelete, text3, buttonHome);
+                gradeText, printGrade, grade, buttonUpdate, textUpdateCredit, textUpdateGoalGrade, textUpdateGrade,  
+                text2, buttonDelete, text3, buttonHome);
         
         
         Scene updateCourses = new Scene(vbox);

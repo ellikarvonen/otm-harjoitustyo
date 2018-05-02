@@ -224,4 +224,51 @@ public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
         stmt.close();
         conn.close();
     }
+    
+    /**
+     * Päivitä arvosana.
+     * @param name Kurssin nimi
+     * @param grade arvosana
+     * @param goal tavoite vai suoritus
+     * @throws SQLException tietokanta virhe
+     */
+    public void updateGrade(String name, String grade, Integer goal) throws SQLException {
+        Connection conn = db.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("UPDATE CourseGrade SET grade = ?  WHERE name = ? AND goal = ?");
+        
+        stmt.setString(1, grade);
+        stmt.setString(2, name);
+        stmt.setInt(3, goal);
+        stmt.executeUpdate();
+
+        stmt.close();
+        conn.close();
+    }
+    
+    /**
+     * Etsii, onko kurssi suoritettu.
+     * @param name kurssin nimi
+     * @return true, jos kurssi suoritettu, false muuten
+     * @throws SQLException tietokanta virhe
+     */
+    public boolean findByNameComplitedCourse(String name) throws SQLException {
+        Connection conn = db.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM CourseGrade WHERE name = ? AND goal = 0");
+        
+        stmt.setString(1, name);
+        ResultSet rs = stmt.executeQuery();
+        
+        if (rs.next()) {
+            rs.close();
+            stmt.close();
+            conn.close();
+            return true;   
+        }
+        
+        rs.close();
+        stmt.close();
+        conn.close();
+        
+        return false;
+    }
 }

@@ -106,6 +106,24 @@ public class CourseDao implements Dao<Course, Integer> {
     public Course saveOrUpdate(Course element) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    /**
+     * Päivitä opintopisteet.
+     * @param name kurssin nimi
+     * @param credit uusi opintopistemäärä
+     * @throws SQLException Tietokanta virhe
+     */
+    public void updateCredit(String name, Integer credit) throws SQLException {
+        Connection conn = db.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("UPDATE Course SET credit = ?  WHERE name = ?");
+        
+        stmt.setInt(1, credit);
+        stmt.setString(2, name);
+        stmt.executeUpdate();
+
+        stmt.close();
+        conn.close();
+    }
 
     /**
      * Etsii kaikki kurssit tietokannasta.
