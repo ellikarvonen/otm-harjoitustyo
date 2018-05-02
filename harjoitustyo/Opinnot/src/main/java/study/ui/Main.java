@@ -91,9 +91,9 @@ public class Main extends Application {
         buttonCourseInfo.setOnAction((event) -> {
             try {
                if (cd.findAll().isEmpty()){
-                    stage.setScene(courseInformations());
+                    stage.setScene(noCoursesPage("Kursseja ei ole olemassa"));
                 } else {
-                    stage.setScene(updateCourses());
+                    stage.setScene(courseInformations());
                 }
             } catch (SQLException ex) {
                
