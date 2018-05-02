@@ -17,3 +17,13 @@ Kurssin lisäys onnistuu Lisää-napista.
 ![alt text](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/virheviesti_uusi_kurssi.png)
 
 ## Kurssin lisääminen suoritetuksi 
+
+Kurssin voi lisätä suoritetuksi sivulta "Lisää kurssi suoritetuksi". Käyttäjä valitsee pudotusvalikosta kurssin ja arvosanan. Arvosana on oletusarvoisesti "0". Jos kursseja, joita voi lisätä suoritetuksi ei ole olemassa. Siirtyy sivusto virheviesti sivulle.
+
+## Kurssitietojen tarkastelu
+
+Kurssien tietoja voi tarkastella sivulta "Kurssitiedot". Käyttäjä valitsee kurssin pudotusvalikosta. Tiedot saa näkyville painamalla nappia "Tiedot". Sivun ylälaidasta näkee kurssien keskiarvon ja suoritettujen kurssien opintopistemäärän.
+
+## Kurssin poistaminen
+
+Kurssin voi poistaa Päivitä kurssitietoja -sivulta. Poistaminen onnistuu Poista kurssi -napista. Sovellus poistaa kurssin, joka on valittu pudotusvalikosta.
