@@ -36,3 +36,5 @@ Mahdolliset virheet pystyy tarkistamaan avaamalla selaimella target/site/checkst
 ### JavaDoc
 
 JavaDocin generointi: **mvn javadoc:javadoc**
+
+JavaDocin tarkastelu onnistuua avaamalla selaimella target/site/apidocs/index.html.
