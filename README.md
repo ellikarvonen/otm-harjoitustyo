@@ -8,7 +8,8 @@
 [Arkkitehtuurikuvaus](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/arkkitehtuuri.md)
 
 ## Releaset
-[viikko 5](https://github.com/ellikarvonen/otm-harjoitustyo/releases)
+[viikko 5](https://github.com/ellikarvonen/otm-harjoitustyo/releases/tag/viikko5)
+[viikko 6](https://github.com/ellikarvonen/otm-harjoitustyo/releases/tag/viikko6)
 
 ## Komentorivitoiminnot
 
