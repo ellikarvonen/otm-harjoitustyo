@@ -33,7 +33,9 @@ Kurssien tietoja voi tarkastella sivulta "Kurssitiedot". Käyttäjä valitsee ku
 
 ## Kurssin tietojen päivittäminen
 
-
+Kurssin tietojen päivitys onnistuu Päivitä kurssitietoja -sivulta.
+Kurssin opintopistemäärää, arvosanatavoitetta ja arvosanaa voi päivittää. Suoritusarvosanaa voi päivittää vain, jos kurssi on suoritettu. Opintopistemäärän tulee olla kokonaisluku. Sovellus kertoo, jos päivitys onnistuu. 
+![alt text](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/muutakurssin_tietoja.png)
 
 ## Kurssin poistaminen 
 
