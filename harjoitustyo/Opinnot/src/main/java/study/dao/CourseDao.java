@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 /**
- * This is CourseDao class.
+ * Tämä luokka käyttää Course tietokantaa.
  * @author ellikarv
  */
 public class CourseDao implements Dao<Course, Integer> {
@@ -25,18 +25,18 @@ public class CourseDao implements Dao<Course, Integer> {
     private Database db;
     
     /**
-     * a
-     * @param db
+     * Tämä on konstruktori.
+     * @param db tietokanta
      */
     public CourseDao(Database db) {
         this.db = db;
     }
     
     /**
-     * a
-     * @param key
-     * @return a
-     * @throws SQLException
+     * Tämä metodi ei ole käytössä.
+     * @param key avain
+     * @return virheviesti
+     * @throws SQLException Tietokanta virhe
      */
     @Override
     public Course findOne(Integer key) throws SQLException {
@@ -44,10 +44,10 @@ public class CourseDao implements Dao<Course, Integer> {
     }
     
     /**
-     * a
-     * @param name
-     * @return a
-     * @throws SQLException
+     * Etsii kurssin tietokannasta nimen perusteella.
+     * @param name Kurssin nimi
+     * @return kurssi, joka löydettiin
+     * @throws SQLException Tietokanta virhe
      */
     public Course findByName(String name) throws SQLException {
         Connection conn = db.getConnection();
@@ -56,12 +56,14 @@ public class CourseDao implements Dao<Course, Integer> {
         stmt.setString(1, name);
         
         ResultSet rs = stmt.executeQuery();
+        
         rs.next();
         
         Course course = new Course(rs.getString("name"), rs.getInt("credit"));
         
-        stmt.close();
+        
         rs.close();
+        stmt.close();
         conn.close();
         
         return course;
@@ -69,10 +71,10 @@ public class CourseDao implements Dao<Course, Integer> {
     }
 
     /**
-     * a
-     * @param course
-     * @return a
-     * @throws SQLException
+     * Tallentaa kurssin
+     * @param course kurssi
+     * @return tallennettu kurssi
+     * @throws SQLException Tietokanta virhe
      */
     @Override
     public Course save(Course course) throws SQLException {
@@ -89,29 +91,16 @@ public class CourseDao implements Dao<Course, Integer> {
         
         stmt.close();
        
-//        stmt = conn.prepareStatement("SELECT * FROM Course WHERE name = ? AND credit = ?");
-//        
-//        stmt.setString(1, course.getName());
-//        stmt.setInt(2, course.getCredit());
-//
-//        ResultSet rs = stmt.executeQuery();
-//        rs.next(); // vain 1 tulos
-//        
-//        Course c = new Course(rs.getString("name"),
-//                rs.getInt("credit"));
-//
-//        stmt.close();
-//        rs.close();
         conn.close();
        
         return course;
     }
 
     /**
-     * a
-     * @param element
-     * @return a
-     * @throws SQLException
+     * Tämä metodi ei ole käytössä.
+     * @param element kurssi
+     * @return virheviesti
+     * @throws SQLException Tietokanta virhe
      */
     @Override
     public Course saveOrUpdate(Course element) throws SQLException {
@@ -119,44 +108,45 @@ public class CourseDao implements Dao<Course, Integer> {
     }
 
     /**
-     * a
-     * @return a
-     * @throws SQLException
+     * Etsii kaikki kurssit tietokannasta.
+     * @return lista kaikista kursseista
+     * @throws SQLException Tietokanta virhe
      */
     @Override
     public List<Course> findAll() throws SQLException {
-        //luodaan kursseille lista
         ArrayList<Course> courses = new ArrayList<>();
-        //otetaan yhteys tietokantaan
         Connection con = db.getConnection();
-        //Luodaan kysely
         PreparedStatement stmt = con.prepareStatement("SELECT * FROM Course");
-        //Palautetaan tuloksen sisältävän rs-olion
         ResultSet rs = stmt.executeQuery();
-        //Käydään tulokset läpi ja lisätään ne listalle
+        
         while (rs.next()) {
             Course c = new Course(rs.getString("name"), rs.getInt("credit"));
             courses.add(c);
         }
-        //suljetaan yhteyksiä yms.
+        
         stmt.close();
         rs.close();
         con.close();
-        // palautetaan kurssien lista
+        
         return courses;
         
     }
 
     /**
-     * a 
-     * @param key
-     * @throws SQLException
+     * Tämä metodi ei ole käytössä.
+     * @param key avain
+     * @throws SQLException Tietokanta virhe
      */
     @Override
     public void delete(Integer key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    /**
+     * Poistaa kurssin tietokannasta nimen perusteella.
+     * @param name kurssin nimi
+     * @throws SQLException Tietokanta virhe
+     */
     public void deleteByName(String name) throws SQLException {
         Connection conn = db.getConnection();
         PreparedStatement stmt = conn.prepareStatement("DELETE FROM Course WHERE name = ?");
@@ -168,24 +158,27 @@ public class CourseDao implements Dao<Course, Integer> {
         conn.close();
     }
     
+    /**
+     * Etsii kaikki kurssit, joita ei ole vielä suoritettu.
+     * @return lista kursseista
+     * @throws SQLException Tietokanta virhe
+     */
     public List<Course> findAllUncompletedCourses() throws SQLException {
         ArrayList<Course> courses = new ArrayList<>();
        
         Connection con = db.getConnection();
-        //Luodaan kysely
         PreparedStatement stmt = con.prepareStatement("SELECT DISTINCT * FROM Course WHERE Course.name not in (SELECT CourseGrade.name FROM CourseGrade WHERE goal=0)");
-        //Palautetaan tuloksen sisältävän rs-olion
         ResultSet rs = stmt.executeQuery();
-        //Käydään tulokset läpi ja lisätään ne listalle
+
         while (rs.next()) {
             Course c = new Course(rs.getString("name"), rs.getInt("credit"));
             courses.add(c);
         }
-        //suljetaan yhteyksiä yms.
+
         stmt.close();
         rs.close();
         con.close();
-        // palautetaan kurssien lista
+
         return courses;
     }
     

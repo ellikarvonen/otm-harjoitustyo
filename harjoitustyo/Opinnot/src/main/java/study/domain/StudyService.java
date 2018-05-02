@@ -14,7 +14,8 @@ import java.util.stream.Collectors;
 import study.dao.Statistics;
 
 /**
- *
+ * Tämän luokan tarkoituksena on tarkistaa, onko kurssien tallentamiseen liittyvät tiedot oikeassa
+ * muodossa ja antaa käyttäjälle virheviestejä. Lisäksi luokka antaa viestejä tilastoista.
  * @author ellikarv
  */
 public class StudyService {
@@ -23,14 +24,25 @@ public class StudyService {
     private CourseGradeDao cgd;
     private Statistics stat;
     
+    /**
+     * Metodi on konstruktori.
+     * @param cd CourseDao
+     * @param cgd CourseGradeDao
+     * @param stat Statistics
+     */
     public StudyService(CourseDao cd, CourseGradeDao cgd, Statistics stat) {
         this.cd = cd;
         this.cgd = cgd;
         this.stat = stat;
     }
     
-    
-    //Uuden kurssin lisääminen
+    /**
+     * Metodi tarkistaa, etta kurssi on oikeassa muodossa ja 
+     * tallentaa kurssin ehtojen tayttyessa.
+     * @param name kurssin nimi
+     * @param credit kurssin opintopistemaara
+     * @return true: kurssin tallentaminen onnistuu, false: kurssin tallennus epaonnistuu
+     */
     public boolean saveCourse(String name, String credit) {
        
         try {
@@ -47,6 +59,15 @@ public class StudyService {
         return false;
     }
         
+    /**
+     * Tarkistaa voiko kurssin ja tavoitearvosanan lisätä. 
+     * Palauttaa viestin, joka kertoo tallentamisen onnistumisesta tai viestin joka
+     * kertoo tallentamisessa tapahtuneesta virheestä.
+     * @param name kurssin nimi
+     * @param credit kurssin opintopistemäärä   
+     * @param grade kurssin tavoitearvosana
+     * @return viesti joka ilmoittaa virheen tai tallentamisen onnistuneen
+     */
     public String saveCourseAndGoalGrade(String name, String credit, Grade grade) {
         if (saveCourse(name, credit) == true) {
             saveGoalGrade(name, grade);
@@ -69,7 +90,12 @@ public class StudyService {
         }
     }
     
-    //kurssille tavoitearvosanan lisääminen
+    /**
+     * Tallentaa kurssille tavoitearvosanan.
+     * @param courseName kurssin nimi
+     * @param grade tavoitearvosana
+     * @return true jos tallennus onnistuu, false jos ei
+     */
     public boolean saveGoalGrade(String courseName, Grade grade) {
         CourseGrade cg = new CourseGrade(courseName, grade.getGrade(), 1);
         try {
@@ -81,7 +107,12 @@ public class StudyService {
         return true;
     }
     
-    //kurssille arvosanan lisääminen suorittaessa
+    /**
+     * Tallentaa kurssin arvosanan.
+     * @param courseName kurssin nimi
+     * @param grade arvosana
+     * @return true jos tallennus onnistuu, false jos ei
+     */
     public boolean saveGrade(String courseName, Grade grade) {
         CourseGrade cg = new CourseGrade(courseName, grade.getGrade(), 0);
         try {
@@ -93,6 +124,11 @@ public class StudyService {
         return true;
     }
     
+    /**
+     * Tulostaa kurssin tavoitearvosanan.
+     * @param name kurssi nimi
+     * @return arvosanan tai tyhjän jos sellaista ei ole
+     */
     public String printGoalGrade(String name) {
         try {
             Grade g = cgd.findGrade(name, 1);
@@ -102,6 +138,11 @@ public class StudyService {
         }
     }
     
+    /**
+     * Tulostaa kurssin arvosanan.
+     * @param name kurssin nimi
+     * @return arvosanan tai tyhjän jos sellaista ei ole 
+     */
     public String printGrade(String name) {
         try {
             Grade g = cgd.findGrade(name, 0);
@@ -111,6 +152,11 @@ public class StudyService {
         }
     }
     
+    /**
+     * Tarkistaa onko saman niminen kurssi olemassa.
+     * @param name kurssin nimi
+     * @return true jos kurssi on olemassa, false jos ei
+     */
     public boolean courseNotExist(String name) {
         try {
             List list = cd.findAll().stream()
@@ -127,14 +173,29 @@ public class StudyService {
         return false;
     }
     
+    /**
+     * Tarkistaa onko kurssin nimi tyhjä.
+     * @param name kurssin nimi
+     * @return true jos kurssin nimi on tyhjä
+     */
     public boolean courseNameIsEmpty(String name) {
         return name.isEmpty();
     }
     
+    /**
+     * Tarkistaa onko kurssin nimi yli 200 merkkiä.
+     * @param name kurssin nimi
+     * @return true jos kurssin nimi liian pitkä
+     */
     public boolean courseNameIsTooLong(String name) {
         return name.length() > 200;
     }
     
+    /**
+     * Tarkistaa onko opintopistemäärä kokonaisluku
+     * @param credit opintopistemäärä
+     * @return true jos opintopistemäärä on kokonaisluku
+     */
     public boolean creditIsInteger(String credit) {
         try { 
             Integer.parseInt(credit); 
@@ -144,18 +205,30 @@ public class StudyService {
         return true;
     }
     
-
+    /**
+     * Tulostaa viestin suoritettujen kurssien keskiarvosta.
+     * @return viesti
+     * @throws SQLException Tietokanta virhe
+     */
     public String printAvarageGrade() throws SQLException {
         return "Suoritettujen kurssien keskiarvo: " + stat.gradeAvarage();
     }
     
+    /**
+     * Tulostaa viestin suoritettujen kurssien summasta.
+     * @return viesti
+     * @throws SQLException Tietokanta virhe
+     */
     public String printComplitedCoursesCreditSum() throws SQLException {
         return "Suoritettuja opintopisteitä yhteensä: " + stat.completedCoursesCreditSum();
     }
     
-//    public String printcountSucceesCourses() throws SQLException {
-//        return "Tavoite saavutettu: " + stat.countSucceesCourses() +":sta suoritetuista kursseista";
-//    }
+    /**
+     * Tarkistaa voiko kurssin suorituksen tallentaa ja tulostaa viestin.
+     * @param courseName kurssin nimi
+     * @param grade arvosana
+     * @return viesti
+     */
     
     public String saveCourseComplited(String courseName, Grade grade) {
         

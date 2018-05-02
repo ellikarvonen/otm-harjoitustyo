@@ -1,14 +1,10 @@
-package daoTest;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package daoTest;
 
-import study.dao.CourseDao;
-import study.dao.Database;
-import study.domain.Course;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,16 +19,21 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import study.dao.CourseDao;
+import study.dao.CourseGradeDao;
+import study.dao.Database;
+import study.domain.CourseGrade;
+import study.domain.Grade;
 
 /**
  *
  * @author ellikarv
  */
-public class CourseDaoTest {
+public class CourseGradeDaoTest {
     
-    CourseDao cd;
+    private CourseGradeDao cgd;
     
-    public CourseDaoTest() {
+    public CourseGradeDaoTest() {
     }
     
     @BeforeClass
@@ -52,12 +53,55 @@ public class CourseDaoTest {
 
         Database db = new Database("jdbc:sqlite:" + tmp.getAbsolutePath());
         
-        cd = new CourseDao(db);
-        
+        cgd = new CourseGradeDao(db);
     }
     
     @After
     public void tearDown() {
+    }
+    
+    @Test
+    public void saveWorks() throws SQLException{
+        CourseGrade cg = cgd.save(new CourseGrade("Test", "3", 1));
+        assertEquals("Test", cg.getCourse());
+        assertEquals("3", cg.getGrade());
+        int goal = cg.getGoal();
+        assertEquals(1, goal);
+    }
+    
+    @Test
+    public void findGradeWorks() throws SQLException{
+        CourseGrade cg = cgd.save(new CourseGrade("Test", "3", 1));
+        String grade = new Grade("3").getGrade();
+        assertEquals(grade, cgd.findGrade("Test", 1).getGrade());
+        assertNull(cgd.findGrade("Null", 1));
+    }
+    
+    @Test
+    public void findAllCompletedCoursesWorks(){
+        
+    }
+    
+    @Test
+    public void findAllCompletedCoursesWithGoalWorks(){
+        
+    }
+    
+    @Test
+    public void findAllCoursesWithGoalWorks(){
+        
+    }
+    
+    @Test
+    public void deleteByNameWorks() throws SQLException{
+        CourseGrade cg = cgd.save(new CourseGrade("Test", "3", 1));
+        cgd.deleteByName("Test");
+        assertTrue(cgd.findAllCoursesWithGoal().isEmpty());
+    }
+    
+    @Test
+    public void  findOneWorks() throws SQLException {
+        
     }
     
     private void initDbs(File dbfile) throws SQLException {
@@ -84,46 +128,13 @@ public class CourseDaoTest {
 
     }
     
-    @Test
-    public void findAllWorks() throws SQLException {
-        cd.save(new Course("Test", 10));
-        cd.save (new Course("Course", 5));
-        
-        assertEquals("Test", cd.findAll().get(0).getName());
-        assertEquals("Course", cd.findAll().get(1).getName());
-        
-        int credit = cd.findAll().get(0).getCredit();
-        int credit2 = cd.findAll().get(1).getCredit();
-        
-        assertEquals(10, credit);
-        assertEquals(5, credit2);
-    }
-    
-    @Test
-    public void saveWorks() throws SQLException {
-        cd.save(new Course("Test", 10));
-        
-        assertEquals("Test", cd.findByName("Test").getName());
-        
-        int credit = cd.findByName("Test").getCredit();
-        assertEquals(10, credit);
-    }
-    
-    @Test
-    public void deleteByNameWorks() throws SQLException {
-        cd.save(new Course("Test", 10));    
-        cd.deleteByName("Test");
-        assertTrue(cd.findAll().isEmpty());
-        
-    }
-        
-   
-    
-    @Test 
-    public void notSupportedMethods() throws SQLException {
-        
-    }
     
     
     
+
+    // TODO add test methods here.
+    // The methods must be annotated with annotation @Test. For example:
+    //
+    // @Test
+    // public void hello() {}
 }

@@ -11,57 +11,30 @@ package study.domain;
  */
 public class Course {
     
-    //private Integer id;
     private String name;
     private Integer credit;
     
     /**
-     * a
-     * @param name
-     * @param credit
+     * Metodi on konstruktori.
+     * @param name kurssin nimi
+     * @param credit kurssin opintopistemaara
      */
     public Course(String name, Integer credit) {
         this.name = name;
         this.credit = credit;
     }
-    
-//    public Integer getId() {
-//        return id;
-//    }
-//
-//    public void setId(Integer id) {
-//        this.id = id;
-//    }
-
-    /**
-     * a
-     * @return a
-     */
-
     public String getName() {
         return name;
     }
 
-    /**
-     * a
-     * @param name
-     */
     public void setName(String name) {
         this.name = name;
     }
     
-    /**
-     * a
-     * @return a
-     */
     public Integer getCredit() {
         return credit;
     }
     
-    /**
-     * a
-     * @param credit
-     */
     public void setCredit(Integer credit) {
         this.credit = credit;
     }

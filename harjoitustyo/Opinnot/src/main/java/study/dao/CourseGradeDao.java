@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 /**
- *a
+ * Tämä luokka käyttää CourseGrade tietokantaa.
  * @author ellikarv
  */
 public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
@@ -27,18 +27,18 @@ public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
     private Database db;
     
     /**
-     *a
-     * @param db
+     * Tämä on konstruktori.
+     * @param db tietokanta
      */
     public CourseGradeDao(Database db) {
         this.db = db;
     }
 
     /**
-     *a
-     * @param key
-     * @return a
-     * @throws SQLException
+     * Tämä metodi ei ole käytettävissä.
+     * @param key avain
+     * @return virheviesti
+     * @throws SQLException Tietokanta virhe
      */
     @Override
     public CourseGrade findOne(Integer key) throws SQLException {
@@ -46,10 +46,10 @@ public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
     }
 
     /**
-     *a 
-     * @param cg
-     * @return a
-     * @throws SQLException
+     * Tallentaa kurssin ja siihen liittyvän arvosanan. 
+     * @param cg kurssiarvosana
+     * @return tallennttu kurssi
+     * @throws SQLException Tietokanta virhe
      */
     @Override
     public CourseGrade save(CourseGrade cg) throws SQLException {
@@ -69,10 +69,10 @@ public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
     }
 
     /**
-     *a
-     * @param element
-     * @return a
-     * @throws SQLException
+     * Tämä metodi ei ole käytettävissä.
+     * @param element kurssiarvosana
+     * @return virheviesti
+     * @throws SQLException Tietokanta virhe
      */
     @Override
     public CourseGrade saveOrUpdate(CourseGrade element) throws SQLException {
@@ -80,9 +80,9 @@ public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
     }
 
     /**
-     *a
-     * @return a
-     * @throws SQLException
+     * Tämä metodi ei ole käytettävissä.
+     * @return virheviesti.
+     * @throws SQLException Tietokanta virhe
      */
     @Override
     public List<CourseGrade> findAll() throws SQLException {
@@ -90,9 +90,9 @@ public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
     }
 
     /**
-     *a 
-     * @param key
-     * @throws SQLException
+     * Tämä metodi ei ole käyettävissä. 
+     * @param key avain
+     * @throws SQLException Tietokanta virhe
      */
     @Override
     public void delete(Integer key) throws SQLException {
@@ -100,11 +100,11 @@ public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
     }
     
     /**
-     *a
-     * @param name
-     * @param goal
-     * @return a
-     * @throws SQLException
+     * Etsi arvosana nimen perusteella.
+     * @param name kurssin nimi
+     * @param goal onko kysessä suoritus vai tavoite
+     * @return palauttaa löydetyn arvosanan
+     * @throws SQLException Tietokanta virhe
      */
     public Grade findGrade(String name, Integer goal) throws SQLException {
         Connection conn = db.getConnection();
@@ -129,55 +129,60 @@ public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
     }
     
     /**
-     *a 
-     * @return a
-     * @throws SQLException
+     * Etsii kaikki suoritetut kurssit.
+     * @return listan kursseista
+     * @throws SQLException Tietokanta virhe
      */
     public List<CourseGrade> findAllCompletedCourses() throws SQLException {
-        //luodaan kursseille lista
+
         ArrayList<CourseGrade> courses = new ArrayList<>();
-        //otetaan yhteys tietokantaan
+
         Connection con = db.getConnection();
-        //Luodaan kysely
         PreparedStatement stmt = con.prepareStatement("SELECT * FROM CourseGrade WHERE goal = 0");
-        //Palautetaan tuloksen sisältävän rs-olion
         ResultSet rs = stmt.executeQuery();
-        //Käydään tulokset läpi ja lisätään ne listalle
+
         while (rs.next()) {
             CourseGrade cg = new CourseGrade(rs.getString("name"), rs.getString("grade"), rs.getInt("goal"));
             courses.add(cg);
         }
-        //suljetaan yhteyksiä yms.
-        stmt.close();
+        
         rs.close();
+        stmt.close();
         con.close();
-        // palautetaan kurssien lista
+
         return courses;
     }
     
+    /**
+     * Etsii kaikki kurssit, jotka on suoritettu ja niillä on tavoite.
+     * @return lista kursseista
+     * @throws SQLException Tietokanta virhe
+     */
     public List<String> findAllCompletedCoursesWithGoal() throws SQLException {
         ArrayList<String> courses = new ArrayList<>();
         Connection conn = db.getConnection();
         
-        //kurssit jotka on suoritettu hyväksytysti ja niillä on jokin tavoitearvosana
         PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT CourseGrade.name FROM CourseGrade WHERE goal=1 AND grade IN ('0','1', '2', '3', '4', '5')" 
                 + "INTERSECT SELECT DISTINCT CourseGrade.name FROM CourseGrade WHERE goal=0 AND grade IN ('1', '2', '3', '4', '5')");
 
         ResultSet rs = stmt.executeQuery();
         
-        //Käydään tulokset läpi ja lisätään ne listalle
         while (rs.next()) {
             
             courses.add(rs.getString("name"));
         }
-        //suljetaan yhteyksiä yms.
         stmt.close();
         rs.close();
         conn.close();
-        // palautetaan kurssien lista
+        
         return courses;
     }
     
+    /**
+     * Etsii kaikki kurssit, joilla tavoite.
+     * @return lista kursseista
+     * @throws SQLException Tietokanta virhe
+     */
     public List<CourseGrade> findAllCoursesWithGoal() throws SQLException {
         ArrayList<CourseGrade> courses = new ArrayList<>();
        
@@ -197,13 +202,18 @@ public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
             }
         }
         
-        stmt.close();
         rs.close();
+        stmt.close();
         con.close();
         
         return courses;
     }
     
+    /**
+     * Poistaa kurssin nimen perusteella.
+     * @param name kurssin nimi
+     * @throws SQLException Tietokanta virhe
+     */
     public void deleteByName(String name) throws SQLException {
         Connection conn = db.getConnection();
         PreparedStatement stmt = conn.prepareStatement("DELETE FROM CourseGrade WHERE name = ?");

@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 /**
- *a
+ * Tämä luokka käyttää Grade tietokantataulua. 
  * @author ellikarv
  */
 public class GradeDao implements Dao<Grade, Integer> {
@@ -25,18 +25,18 @@ public class GradeDao implements Dao<Grade, Integer> {
     private Database db;
     
     /**
-     *a
-     * @param db
+     * Tämä on konstruktori.
+     * @param db tietokanta
      */
     public GradeDao(Database db) {
         this.db = db;
     }
 
-    /**a
-     *
-     * @param key
-     * @return a
-     * @throws SQLException
+    /**
+     * Tämä metodi ei ole käytettävissä.
+     * @param key avain
+     * @return virheviesti
+     * @throws SQLException Tietokanta virhe
      */
     @Override
     public Grade findOne(Integer key) throws SQLException {
@@ -44,10 +44,10 @@ public class GradeDao implements Dao<Grade, Integer> {
     }
 
     /**
-     *a
-     * @param grade
-     * @return a
-     * @throws SQLException
+     * Tallentaa arvosanan.
+     * @param grade arvosana
+     * @return arvosana joka tallennettu
+     * @throws SQLException Tietokanta virhe
      */
     @Override
     public Grade save(Grade grade) throws SQLException {
@@ -78,15 +78,21 @@ public class GradeDao implements Dao<Grade, Integer> {
         return c;
     }
 
+    /**
+     * Tämä metodi ei ole käytettävissä.
+     * @param element arvosana
+     * @return virheviesti
+     * @throws SQLException Tietokanta virhe
+     */
     @Override
     public Grade saveOrUpdate(Grade element) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
-     * a
-     * @return a
-     * @throws SQLException
+     * Etsii kaikki arvosanat
+     * @return lista arvosanoista
+     * @throws SQLException Tietokanta virhe
      */
     @Override
     public List<Grade> findAll() throws SQLException {
@@ -108,6 +114,11 @@ public class GradeDao implements Dao<Grade, Integer> {
         return grades;
     }
     
+    /**
+     * Etsii kaikki arvosanat, jotka on numeroita
+     * @return lisyta arvosanoista
+     * @throws SQLException Tietokanta virhe
+     */
     public List<Grade> findAllNumbers() throws SQLException {
         List<Grade> all = findAll();
         List<Grade> allNumbers = new ArrayList<>();
@@ -134,9 +145,9 @@ public class GradeDao implements Dao<Grade, Integer> {
         
 
     /**
-     * a
-     * @param key
-     * @throws SQLException
+     * Tämä metodi ei ole käytettävissä.
+     * @param key avain
+     * @throws SQLException Tietokanta virhe
      */
     @Override
     public void delete(Integer key) throws SQLException {

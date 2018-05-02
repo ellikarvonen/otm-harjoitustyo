@@ -15,7 +15,7 @@ import study.domain.CourseGrade;
 import study.domain.Grade;
 
 /**
- *
+ * Tämä luokka luo tilastoja kursseista.
  * @author ellikarv
  */
 public class Statistics {
@@ -24,8 +24,8 @@ public class Statistics {
     private CourseGradeDao cd;
     
     /**
-     *
-     * @param db
+     * Tämä on konstruktori.
+     * @param db tietokanta
      */
     public Statistics(Database db) {
         this.cd = new CourseGradeDao(db);
@@ -33,9 +33,9 @@ public class Statistics {
     }
     
     /**
-     *
-     * @return
-     * @throws SQLException
+     * Laskee suoritetun opintopistemäärän.
+     * @return opintopisteet
+     * @throws SQLException Tietokanta virhe
      */
     public int completedCoursesCreditSum() throws SQLException {
         Connection conn = db.getConnection();
@@ -53,9 +53,9 @@ public class Statistics {
     }
     
     /**
-     *
-     * @return
-     * @throws SQLException
+     * Laskee arvosana keskiarvon suoritetuista kursseista.
+     * @return pyöristetty keskiarvo
+     * @throws SQLException Tietokanta virhe
      */
     public double gradeAvarage() throws SQLException {
         Connection conn = db.getConnection();

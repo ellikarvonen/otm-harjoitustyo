@@ -79,7 +79,7 @@ public class Main extends Application {
         buttonCourseGrade.setOnAction((event) -> {
             try {
                 if (cd.findAllUncompletedCourses().isEmpty()) {
-                    stage.setScene(noCoursesPage());
+                    stage.setScene(noCoursesPage("Suorittamattomia kursseja ei ole olemassa!"));
                 } else {
                     stage.setScene(courseGradePage());
                 }
@@ -90,7 +90,11 @@ public class Main extends Application {
         
         buttonCourseInfo.setOnAction((event) -> {
             try {
-                stage.setScene(courseInformations());
+               if (cd.findAll().isEmpty()){
+                    stage.setScene(courseInformations());
+                } else {
+                    stage.setScene(updateCourses());
+                }
             } catch (SQLException ex) {
                
             }
@@ -98,7 +102,12 @@ public class Main extends Application {
         
         buttonUpdate.setOnAction((event) -> {
             try {
-                stage.setScene(updateCourses());
+                if (cd.findAll().isEmpty()){
+                    stage.setScene(noCoursesPage("Kursseja ei ole olemassa"));
+                } else {
+                    stage.setScene(updateCourses());
+                }
+                
             } catch (SQLException ex) {
                
             }
@@ -226,8 +235,9 @@ public class Main extends Application {
             String name = getChoiceCourse(choicebox).getName();
             
             Grade g = getChoiceGrade(grade);
+            String complited =  ss.saveCourseComplited(name, g);
 
-            textComplited.setText(ss.saveCourseComplited(name, g));
+            textComplited.setText(complited);
             
             int index = uncompletedCourses.indexOf(getChoiceCourse(choicebox));
             uncompletedCourses.remove(index);
@@ -235,7 +245,7 @@ public class Main extends Application {
 
             
             if(uncompletedCourses.isEmpty()){
-                stage.setScene(noCoursesPage());
+                stage.setScene(noCoursesPage( complited + " Suorittamattomia kursseja ei ole olemassa!"));
             }
             
                        
@@ -250,8 +260,8 @@ public class Main extends Application {
         
     }
     
-    private Scene noCoursesPage() {
-        Label text = new Label("Suorittamattomia kursseja ei ole olemassa");
+    private Scene noCoursesPage(String text1) {
+        Label text = new Label(text1);
         VBox vbox = new VBox();
         vbox.getChildren().addAll(text, buttonNewCourse, buttonHome);
         
@@ -285,8 +295,12 @@ public class Main extends Application {
         Label printGrade = new Label("");
         
         TextField courseCredit = new TextField();
+        
         ChoiceBox<Grade> goalGrade = new ChoiceBox(FXCollections.observableArrayList(gd.findAll())); 
+        goalGrade.getSelectionModel().selectFirst();
+        
         ChoiceBox<Grade> grade = new ChoiceBox(FXCollections.observableArrayList(gd.findAllNumbers())); 
+        grade.getSelectionModel().selectFirst();
         
         button.setOnAction((event) ->  {
             printName.setText(getChoiceCourse(choicebox).getName());
@@ -309,6 +323,11 @@ public class Main extends Application {
                 int index = courses.indexOf(getChoiceCourse(choicebox));
                 courses.remove(index);
                 choicebox.getSelectionModel().selectFirst();
+                
+                if(cd.findAll().isEmpty()){
+                    stage.setScene(noCoursesPage("Kursseja ei ole olemassa!"));
+                }
+                    
             } catch (SQLException ex) {
             }
         });

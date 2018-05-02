@@ -15,7 +15,8 @@ import java.util.List;
  */
 
 /**
- * This is database.
+ * Tämä luokka ottaa yhteyden tietokantaa ja luo tietokantataulut, jos niitä ei 
+ * ole olemassa.
  * @author ellikarv
  */
 public class Database {
@@ -24,9 +25,9 @@ public class Database {
     private String databaseAddress;
     
     /**
-     * a
-     * @param databaseAddress
-     * @throws ClassNotFoundException
+     * Tämä on konstruktori.
+     * @param databaseAddress tietokanta
+     * @throws ClassNotFoundException Luokkaa ei löydy
      */
     public Database(String databaseAddress) throws ClassNotFoundException {
         this.databaseAddress = databaseAddress;
@@ -38,7 +39,7 @@ public class Database {
     }
     
     /**
-     * a
+     * Luodaan tietokantataulut, jos tarvetta.
      */
     public void init() {
         List<String> sqlite = sqliteStatements();
