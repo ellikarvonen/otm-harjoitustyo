@@ -10,7 +10,7 @@ Sovellus käynnoistyy etusivulle
 
 Uuden kurssin luominen onnistuu suurtymällä etusivulta "Lisää uusi kurssi" -sivulle. Käyttäjä Kirjoittaa kenttiin kurssin nimen ja opintopistemäärän. Tavoitearvosana on oletusarvoisesti "-", mutta sen voi vaihtaa pudotusvalikosta.
 
-[! alt](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/lisaa_uusi_kurssi.png)
+![alt text](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/lisaa_uusi_kurssi.png)
 
 Kurssin lisäys onnistuu Lisää-napista. Jos kurssin nimi on liian pitkä, saman niminen kurssi on jo olemassa tai kurssin nimi on tyhjä, niin ruudulle ilmestyy virheviesti. Virheviesti ilmestyy myös jos opintopisteet eivät ole kokonaisluku.
 
