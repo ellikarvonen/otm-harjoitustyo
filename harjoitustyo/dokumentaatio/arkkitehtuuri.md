@@ -43,7 +43,7 @@ Tietokantataulu CourseDao puolestaan pitää kirjaa kurssin tavoitearvosanoista 
 
 Tietokantataulu Grade pitää kirjaa kaikista mahdollisista arvosanoista. Arvosanan täytyy olla uniikki.
 |PRIMARY KEY grade (varchar(20)) |
-|-----------------------------|
+|:-----------------------------:|
 | - |
 | 1 |
 | 2 |
