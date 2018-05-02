@@ -32,3 +32,7 @@ Tiedosto Opinnot-1.0-SNAPSHOT.jar on hakemistossa *target*.
 Tarkistukset, jotka määritellään tiedostossa [checkstyle.xml](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/Opinnot/checkstyle.xml) voi suorittaa komennolla: **mvn jxr:jxr checkstyle:checkstyle**
 
 Mahdolliset virheet pystyy tarkistamaan avaamalla selaimella target/site/checkstyle.html.
+
+### JavaDoc
+
+JavaDocin generointi: **mvn javadoc:javadoc**
