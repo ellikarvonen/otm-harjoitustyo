@@ -8,6 +8,12 @@ Pakkauskaavio
 
 ![alt text](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/pakkauskaavio.png)
 
+## Käyttöliittymä
+Käyttöliittymässä on seuraavat näkymät:
+
+..* Etusivu
+
+
 ## Päätoiminnallisuudet
 
 ### Kurssin lisääminen
