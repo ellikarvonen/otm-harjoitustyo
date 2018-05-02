@@ -20,4 +20,5 @@
 |23.4.2018|2.5h | SQL-kyselyiden miettimistä, sekvenssikaavio|
 |24.4.2018| 3h |metodien siistimistä, kurssin poistamismahdollisuus, jar |
 |25.4.2018| 1.5h |testejä ja graafista käyttöliittymää|
-| **yhteensä** | 37.5h |
+| 2.5.2018 | 2h | JavaDoc, arkkitehtuurikuvausta ja käyttöohjetta| 
+| **yhteensä** | 39.5h |
