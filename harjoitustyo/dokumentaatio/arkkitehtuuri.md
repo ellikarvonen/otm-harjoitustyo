@@ -11,7 +11,28 @@ Pakkauskaavio
 ## Käyttöliittymä
 Käyttöliittymässä on seuraavat näkymät:
 
-..* Etusivu
+- Etusivu
+- Uuden kurssin lisääminen
+- Kurssin lisääminen suoritetuksi
+- Kurssitietojen tarkastelu
+- Kurssitietojen päivittäminen
+- Ilmoitussivu (kursseja ei olemassa)
+
+Kaikki näkymät ovat toteutettu Scene-oliona. Vain yksi sivu näkyy kerrallaan. Käyttöliittymä on luokassa study.ui.main.
+
+Käyttöliittymä on erillään sovelluslogiikasta ja se kutsuu sovelluslogiikasta studyService luokkaa sekä tarvittaessa, kuten poistamisessa ja listaamisessa, myös dao luokkia.
+
+## Tietojen pysyväistallennus
+
+Pakkauksen study.dao luokat huolehtivat tietojen tallentamisesta ja poistamisesta *study.db* tietokantaan. Tiedot tallennetaan kolmeen eri tietokantatauluun, jotka ovat Course, CourseGrade ja Grade. Tietokanta on SQLite3-tietokanta.
+
+Tietokantataulu Course sisältää tiedon kurssin nimestä ja opintopisteistä. Kurssin nimen täytyy olla uniikki.
+
+|kurssin nimi (varchar (200)| opintopistemäärä (Integer)|
+| Ohjelmistotekniikan menetelmät| 5|
+| Ohjelmoinnin perusteet | 5 | 
+
+Tietokantataulu CourseDao puolestaan pitää kirjaa kurssin tavoitearvosanoista sekä saaduista arvosanoista. Jokaisella kurssilla voi olla vain yksi tavoitearvosana sekä saatu arvosana. Tietokantataulu Grade pitää kirjaa kaikista mahdollisista arvosanoista. Arvosanan täytyy olla uniikki.
 
 
 ## Päätoiminnallisuudet
