@@ -1,5 +1,9 @@
 # Opinnot
 
+Sovellus pitää kirjaa käyttäjän lisäämistä kursseista. Kursseille voi lisätä tavoitearvosanoja ja kursseja voi lisätä suoritetuksi. Sovelluksessa pystyy tarkastelemaan ja muuttamaan kurssin tietoja. 
+
+Sovellus on tehty Helsingin Yliopiston Tietojenkäsittelytieteeb Ohjelmistotekniikan menetelmät kurssilla harjoitustyöksi.
+
 ## Dokumentaatio
 [Käyttöohje](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/kayttoohje.md)
 
