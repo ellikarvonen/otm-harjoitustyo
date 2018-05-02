@@ -29,6 +29,7 @@ Pakkauksen study.dao luokat huolehtivat tietojen tallentamisesta ja poistamisest
 Tietokantataulu Course sisältää tiedon kurssin nimestä ja opintopisteistä. Kurssin nimen täytyy olla uniikki.
 
 | kurssin nimi (varchar (200) | opintopistemäärä (Integer) |
+|-----------------------------|:--------------------------:|
 | Ohjelmistotekniikan menetelmät | 5 |
 | Ohjelmoinnin perusteet | 5 | 
 
