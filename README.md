@@ -1,6 +1,8 @@
 # Opinnot
 
 ## Dokumentaatio
+[Käyttöohje](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/kayttoohje.md)
+
 [Vaatimusmäärittely](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/vaatimusmaarittely.md)
 
 [Työaikakirjanpito](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/tyoaikakirjanpito.md)
@@ -9,6 +11,7 @@
 
 ## Releaset
 [viikko 5](https://github.com/ellikarvonen/otm-harjoitustyo/releases/tag/viikko5)
+
 [viikko 6](https://github.com/ellikarvonen/otm-harjoitustyo/releases/tag/viikko6)
 
 ## Komentorivitoiminnot
