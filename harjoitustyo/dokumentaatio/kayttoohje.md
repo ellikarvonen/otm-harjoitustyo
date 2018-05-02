@@ -1,7 +1,7 @@
 # Käyttöohje
 
 ## Ohjelman käynnistäminen
-Ohjelman saa käynnistettyä komennolla: **java -jar todoapp.jar**
+Ohjelman saa käynnistettyä komennolla: **java -jar Opinnot-1.jar**
 
 ## Etusivu
 Sovellus käynnoistyy etusivulle.
@@ -31,6 +31,10 @@ Kurssien tietoja voi tarkastella sivulta "Kurssitiedot". Käyttäjä valitsee ku
 
 ![alt text](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/kurssitiedot.png)
 
-## Kurssin poistaminen
+## Kurssin tietojen päivittäminen
+
+
+
+## Kurssin poistaminen 
 
 Kurssin voi poistaa Päivitä kurssitietoja -sivulta. Poistaminen onnistuu Poista kurssi -napista. Sovellus poistaa kurssin, joka on valittu pudotusvalikosta.
