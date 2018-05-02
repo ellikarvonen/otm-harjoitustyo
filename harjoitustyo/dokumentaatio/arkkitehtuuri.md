@@ -28,8 +28,8 @@ Pakkauksen study.dao luokat huolehtivat tietojen tallentamisesta ja poistamisest
 
 Tietokantataulu Course sisältää tiedon kurssin nimestä ja opintopisteistä. Kurssin nimen täytyy olla uniikki.
 
-|kurssin nimi (varchar (200)| opintopistemäärä (Integer)|
-| Ohjelmistotekniikan menetelmät| 5|
+| kurssin nimi (varchar (200) | opintopistemäärä (Integer) |
+| Ohjelmistotekniikan menetelmät | 5 |
 | Ohjelmoinnin perusteet | 5 | 
 
 Tietokantataulu CourseDao puolestaan pitää kirjaa kurssin tavoitearvosanoista sekä saaduista arvosanoista. Jokaisella kurssilla voi olla vain yksi tavoitearvosana sekä saatu arvosana. Tietokantataulu Grade pitää kirjaa kaikista mahdollisista arvosanoista. Arvosanan täytyy olla uniikki.
