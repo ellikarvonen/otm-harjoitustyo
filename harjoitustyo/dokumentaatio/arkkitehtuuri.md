@@ -32,7 +32,7 @@ Sovelluslogiikasta huolehtii luokka study.domain.studyService luokka. Luokka tar
 
 ## Tietojen pysyväistallennus
 
-Pakkauksen study.dao luokat huolehtivat tietojen tallentamisesta ja poistamisesta *study.db* tietokantaan. Tiedot tallennetaan kolmeen eri tietokantatauluun, jotka ovat Course, CourseGrade ja Grade. Tietokanta on SQLite3-tietokanta.
+Pakkauksen study.dao luokat huolehtivat tietojen tallentamisesta ja poistamisesta *study.db* tietokantaan. Tiedot tallennetaan kolmeen eri tietokantatauluun, jotka ovat Course, CourseGrade ja Grade. Tietokanta on SQLite-tietokanta.
 
 Tietokantataulu Course sisältää tiedon kurssin nimestä ja opintopisteistä. Kurssin nimen täytyy olla uniikki.
 
