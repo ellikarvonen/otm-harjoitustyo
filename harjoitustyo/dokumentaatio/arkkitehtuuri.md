@@ -1,10 +1,10 @@
 # Arkkitehtuurikuvaus
 ## Rakenne
-Luokkakaavio
+### Luokkakaavio
 
 ![alt text](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/opinnot_luokkakaavio.png)
 
-Pakkauskaavio
+### Pakkauskaavio
 
 ![alt text](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/pakkauskaavio.png)
 
