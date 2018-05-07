@@ -123,12 +123,12 @@ public class StudyServiceTest {
         ss.saveGrade("Otm", grade);
         ss.saveGrade("t", grade);
         
-        assertEquals("Suoritettuja opintopisteitä yhteensä: 8", ss.printComplitedCoursesCreditSum());
+        assertEquals("Suoritettuja opintopisteitä yhteensä: 8", ss.printCompletedCoursesCreditSum());
     }
     
     @Test
     public void saveCourseComplitedWorks(){
-        assertEquals("Kurssin suoritus OTM tallennettu!", ss.saveCourseComplited("OTM", grade));
+        assertEquals("Kurssin suoritus OTM tallennettu!", ss.saveCourseCompleted("OTM", grade));
     }
     
     @Test
@@ -156,7 +156,7 @@ public class StudyServiceTest {
     @Test 
     public void updateGradeWorks() throws SQLException {
         ss.saveCourseAndGoalGrade("Otm", "3", grade);
-        ss.saveCourseComplited("Otm", new Grade("5"));
+        ss.saveCourseCompleted("Otm", new Grade("5"));
         
         assertEquals("Arvosana päivitetty", ss.updateGrade("Otm", "3"));
         assertEquals("3", cgd.findGrade("Otm",0).getGrade());

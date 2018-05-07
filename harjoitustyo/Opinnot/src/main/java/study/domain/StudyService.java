@@ -46,7 +46,7 @@ public class StudyService {
     public boolean saveCourse(String name, String credit) {
        
         try {
-            if (courseNotExist(name) == true && creditIsInteger(credit) == true && courseNameIsTooLong(name) == false && courseNameIsEmpty(name) == false) {
+            if (courseNotExist(name) && creditIsInteger(credit) && courseNameIsTooLong(name) == false && courseNameIsEmpty(name) == false) {
                 Course course = new Course(name, Integer.parseInt(credit));
                 cd.save(course);
                 return true;
@@ -69,7 +69,7 @@ public class StudyService {
      * @return viesti joka ilmoittaa virheen tai tallentamisen onnistuneen
      */
     public String saveCourseAndGoalGrade(String name, String credit, Grade grade) {
-        if (saveCourse(name, credit) == true) {
+        if (saveCourse(name, credit)) {
             saveGoalGrade(name, grade);
             return "Kurssi lisätty!";
             
@@ -79,10 +79,10 @@ public class StudyService {
         } else if ((creditIsInteger(credit) == false)) { 
             return "Opintopisteiden tulee olla kokonaisnumero!";
             
-        } else if ((courseNameIsEmpty(name) == true)) { 
+        } else if ((courseNameIsEmpty(name))) { 
             return "Nimi ei saa olla tyhjä!";
         
-        } else if ((courseNameIsTooLong(name) == true)) { 
+        } else if ((courseNameIsTooLong(name))) { 
             return "Kurssin nimi on liian pitkä. Sallittu merkkimäärä on 200.";
             
         } else {
@@ -219,7 +219,7 @@ public class StudyService {
      * @return viesti
      * @throws SQLException Tietokanta virhe
      */
-    public String printComplitedCoursesCreditSum() throws SQLException {
+    public String printCompletedCoursesCreditSum() throws SQLException {
         return "Suoritettuja opintopisteitä yhteensä: " + stat.completedCoursesCreditSum();
     }
     
@@ -229,9 +229,9 @@ public class StudyService {
      * @param grade arvosana
      * @return viesti
      */
-    public String saveCourseComplited(String courseName, Grade grade) {
+    public String saveCourseCompleted(String courseName, Grade grade) {
         
-        if (saveGrade(courseName, grade) == true) {
+        if (saveGrade(courseName, grade)) {
             return "Kurssin suoritus " + courseName + " tallennettu!";
         } else {
             return "Virhe tallentamisessa!";
@@ -247,7 +247,7 @@ public class StudyService {
      * @throws SQLException tietokanta virhe
      */
     public String updateCredit(String name, String credit) throws SQLException {
-        if (this.creditIsInteger(credit) == true) {
+        if (this.creditIsInteger(credit)) {
             cd.updateCredit(name, Integer.parseInt(credit));
             return "Opintopistemäärä päivitetty";
         }
@@ -279,7 +279,7 @@ public class StudyService {
      */
     public String updateGrade(String name, String grade) throws SQLException {
         try {
-            if (cgd.findByNameComplitedCourse(name) == true) {
+            if (cgd.findByNameComplitedCourse(name)) {
                 cgd.updateGrade(name, grade, 0);
                 return "Arvosana päivitetty";
             }

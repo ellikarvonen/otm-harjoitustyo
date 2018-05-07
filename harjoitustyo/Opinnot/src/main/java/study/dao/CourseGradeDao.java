@@ -1,7 +1,7 @@
 package study.dao;
 
 
-import study.dao.Dao;
+
 import study.domain.Course;
 import study.domain.CourseGrade;
 import study.domain.Grade;
@@ -22,7 +22,7 @@ import java.util.List;
  * Tämä luokka käyttää CourseGrade tietokantaa.
  * @author ellikarv
  */
-public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
+public class CourseGradeDao {
     
     private Database db;
     
@@ -35,23 +35,12 @@ public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
     }
 
     /**
-     * Tämä metodi ei ole käytettävissä.
-     * @param key avain
-     * @return virheviesti
-     * @throws SQLException Tietokanta virhe
-     */
-    @Override
-    public CourseGrade findOne(Integer key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
      * Tallentaa kurssin ja siihen liittyvän arvosanan. 
      * @param cg kurssiarvosana
      * @return tallennttu kurssi
      * @throws SQLException Tietokanta virhe
      */
-    @Override
+    
     public CourseGrade save(CourseGrade cg) throws SQLException {
         Connection conn = db.getConnection();
 
@@ -68,37 +57,6 @@ public class CourseGradeDao implements Dao<CourseGrade, Integer>  {
         return cg;
     }
 
-    /**
-     * Tämä metodi ei ole käytettävissä.
-     * @param element kurssiarvosana
-     * @return virheviesti
-     * @throws SQLException Tietokanta virhe
-     */
-    @Override
-    public CourseGrade saveOrUpdate(CourseGrade element) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     * Tämä metodi ei ole käytettävissä.
-     * @return virheviesti.
-     * @throws SQLException Tietokanta virhe
-     */
-    @Override
-    public List<CourseGrade> findAll() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
-     * Tämä metodi ei ole käyettävissä. 
-     * @param key avain
-     * @throws SQLException Tietokanta virhe
-     */
-    @Override
-    public void delete(Integer key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     /**
      * Etsi arvosana nimen perusteella.
      * @param name kurssin nimi

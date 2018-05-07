@@ -20,7 +20,7 @@ import java.util.List;
  * Tämä luokka käyttää Grade tietokantataulua. 
  * @author ellikarv
  */
-public class GradeDao implements Dao<Grade, Integer> {
+public class GradeDao {
     
     private Database db;
     
@@ -33,23 +33,11 @@ public class GradeDao implements Dao<Grade, Integer> {
     }
 
     /**
-     * Tämä metodi ei ole käytettävissä.
-     * @param key avain
-     * @return virheviesti
-     * @throws SQLException Tietokanta virhe
-     */
-    @Override
-    public Grade findOne(Integer key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /**
      * Tallentaa arvosanan.
      * @param grade arvosana
      * @return arvosana joka tallennettu
      * @throws SQLException Tietokanta virhe
      */
-    @Override
     public Grade save(Grade grade) throws SQLException {
         Connection conn = db.getConnection();
            
@@ -78,23 +66,12 @@ public class GradeDao implements Dao<Grade, Integer> {
         return c;
     }
 
-    /**
-     * Tämä metodi ei ole käytettävissä.
-     * @param element arvosana
-     * @return virheviesti
-     * @throws SQLException Tietokanta virhe
-     */
-    @Override
-    public Grade saveOrUpdate(Grade element) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     /**
      * Etsii kaikki arvosanat
      * @return lista arvosanoista
      * @throws SQLException Tietokanta virhe
      */
-    @Override
     public List<Grade> findAll() throws SQLException {
         ArrayList<Grade> grades = new ArrayList<>();
         
@@ -142,16 +119,6 @@ public class GradeDao implements Dao<Grade, Integer> {
         
         
     }
-        
-
-    /**
-     * Tämä metodi ei ole käytettävissä.
-     * @param key avain
-     * @throws SQLException Tietokanta virhe
-     */
-    @Override
-    public void delete(Integer key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
 }

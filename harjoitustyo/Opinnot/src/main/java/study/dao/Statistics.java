@@ -60,7 +60,8 @@ public class Statistics {
     public double gradeAvarage() throws SQLException {
         Connection conn = db.getConnection();
         
-        PreparedStatement stmt = conn.prepareStatement("SELECT AVG(grade) FROM CourseGrade WHERE CourseGrade.goal = 0 AND CourseGrade.grade IN ('1','2','3','4','5')");
+        PreparedStatement stmt = conn.prepareStatement("SELECT AVG(grade) FROM CourseGrade WHERE CourseGrade.goal = 0 "
+                + "AND CourseGrade.grade IN ('1','2','3','4','5')");
         ResultSet rs = stmt.executeQuery();
         
         double avarage = rs.getDouble(1);

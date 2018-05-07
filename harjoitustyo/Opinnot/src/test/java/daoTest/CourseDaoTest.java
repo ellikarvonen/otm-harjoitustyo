@@ -17,12 +17,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import junit.framework.Assert;
+import static org.hamcrest.CoreMatchers.is;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import study.dao.CourseGradeDao;
+import study.domain.CourseGrade;
 
 /**
  *
@@ -31,6 +35,7 @@ import static org.junit.Assert.*;
 public class CourseDaoTest {
     
     CourseDao cd;
+    CourseGradeDao cgd;
     
     public CourseDaoTest() {
     }
@@ -53,6 +58,7 @@ public class CourseDaoTest {
         Database db = new Database("jdbc:sqlite:" + tmp.getAbsolutePath());
         
         cd = new CourseDao(db);
+        cgd = new CourseGradeDao(db);
         
     }
     
@@ -116,13 +122,31 @@ public class CourseDaoTest {
         assertTrue(cd.findAll().isEmpty());
         
     }
-        
-   
     
-    @Test 
-    public void notSupportedMethods() throws SQLException {
+    @Test
+    public void findAllUncompletedCoursesWorks() throws SQLException{
+        
+        cd.save(new Course("TestCompleted", 10));
+        cgd.save(new CourseGrade("TestCompleted", "3", 0));
+        
+        
+        Course c1 = new Course("Test1", 3);
+        Course c2 = new Course("Test2", 4);
+        
+        cd.save(c1);
+        cd.save(c2);
+        
+        List<Course> list = new ArrayList<>();
+        list.add(c1);
+        list.add(c2);
+        
+        
+        assertSame(list, cd.findAllUncompletedCourses());
+        
         
     }
+        
+   
     
     
     

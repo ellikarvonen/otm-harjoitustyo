@@ -20,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -171,7 +172,7 @@ public class Main extends Application {
     private Scene courseInformations() throws SQLException {
         
         Label textAvarage = new Label(ss.printAvarageGrade());
-        Label textSum = new Label(ss.printComplitedCoursesCreditSum());
+        Label textSum = new Label(ss.printCompletedCoursesCreditSum());
 //        Label textGoal = new Label(ss.printcountSucceesCourses());
         
         Label textSelectCourse = new Label("Kurssitiedot");
@@ -235,7 +236,7 @@ public class Main extends Application {
             String name = getChoiceCourse(choicebox).getName();
             
             Grade g = getChoiceGrade(grade);
-            String complited =  ss.saveCourseComplited(name, g);
+            String complited =  ss.saveCourseCompleted(name, g);
 
             textComplited.setText(complited);
             
@@ -273,11 +274,12 @@ public class Main extends Application {
     private Scene updateCourses() throws SQLException {
         Label header = new Label("Muuta kurssin tietoja.");
         Label text = new Label("Valitse ensin kurssi, jonka tietoja haluat muuttaa. "
-                + "Saat näkyviin kurssin tämän hetkiset tiedot painamalla Näytä tiedot -nappia. "
-                + "Päivitä tiedot laittamalla uudet tiedot kenttiin.");
+                + "\n Saat näkyviin kurssin tämän hetkiset tiedot painamalla Näytä tiedot -nappia. "
+                + "\n Päivitä tiedot laittamalla uudet tiedot kenttiin.");
         header.setFont(new Font("Arial", 20));
         
         Label text1 = new Label("Valitse kurssi");
+        text1.setFont(new Font("Arial", 16));
         
         Label textUpdateCredit = new Label("");
         Label textUpdateGoalGrade = new Label("");
@@ -287,6 +289,8 @@ public class Main extends Application {
         ObservableList<Course> courses = FXCollections.observableArrayList(cd.findAll());
         choicebox = new ChoiceBox(courses);
         choicebox.getSelectionModel().selectFirst();
+        
+       
         
         Button button = new Button("Näytä tiedot");
         Button buttonUpdate = new Button("Päivitä tiedot");

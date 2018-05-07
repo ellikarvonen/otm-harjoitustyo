@@ -1,7 +1,5 @@
 package study.dao;
 
-
-import study.dao.Dao;
 import study.domain.Course;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +18,7 @@ import java.util.List;
  * Tämä luokka käyttää Course tietokantaa.
  * @author ellikarv
  */
-public class CourseDao implements Dao<Course, Integer> {
+public class CourseDao {
 
     private Database db;
     
@@ -32,16 +30,6 @@ public class CourseDao implements Dao<Course, Integer> {
         this.db = db;
     }
     
-    /**
-     * Tämä metodi ei ole käytössä.
-     * @param key avain
-     * @return virheviesti
-     * @throws SQLException Tietokanta virhe
-     */
-    @Override
-    public Course findOne(Integer key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     /**
      * Etsii kurssin tietokannasta nimen perusteella.
@@ -76,7 +64,6 @@ public class CourseDao implements Dao<Course, Integer> {
      * @return tallennettu kurssi
      * @throws SQLException Tietokanta virhe
      */
-    @Override
     public Course save(Course course) throws SQLException {
         
         Connection conn = db.getConnection();
@@ -96,16 +83,6 @@ public class CourseDao implements Dao<Course, Integer> {
         return course;
     }
 
-    /**
-     * Tämä metodi ei ole käytössä.
-     * @param element kurssi
-     * @return virheviesti
-     * @throws SQLException Tietokanta virhe
-     */
-    @Override
-    public Course saveOrUpdate(Course element) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     /**
      * Päivitä opintopisteet.
@@ -130,7 +107,6 @@ public class CourseDao implements Dao<Course, Integer> {
      * @return lista kaikista kursseista
      * @throws SQLException Tietokanta virhe
      */
-    @Override
     public List<Course> findAll() throws SQLException {
         ArrayList<Course> courses = new ArrayList<>();
         Connection con = db.getConnection();
@@ -150,16 +126,6 @@ public class CourseDao implements Dao<Course, Integer> {
         
     }
 
-    /**
-     * Tämä metodi ei ole käytössä.
-     * @param key avain
-     * @throws SQLException Tietokanta virhe
-     */
-    @Override
-    public void delete(Integer key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     /**
      * Poistaa kurssin tietokannasta nimen perusteella.
      * @param name kurssin nimi
