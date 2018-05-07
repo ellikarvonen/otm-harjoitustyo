@@ -79,3 +79,8 @@ CourseGradeDaon metodi save tallentaa suorituksen tietokantaan ja palauttaa tall
 
 Alla sekvenssikaavio 
 ![alt taxt](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/suoritus_sekvennssi.png)
+
+## Ohjelman rakenteeseen jääneet heikkoudet
+
+### Käyttöliittymä
+Käyttöliittymä on toteutettu luokassa Main. Käyttöliittymän metodit ovat liian pitkiä ja niitä tulisi hajoittaa pienemmiksi metodeiksi.
