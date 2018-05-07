@@ -22,4 +22,6 @@
 |25.4.2018| 1.5h |testejä ja graafista käyttöliittymää|
 | 2.5.2018 | 2h | JavaDoc, arkkitehtuurikuvausta ja käyttöohjetta| 
 | 2.5.2018 | 3.5h| testejä, mahdollisuus kurssitietojen muuttamiseen|
-| **yhteensä** | 43h |
+| 4.5.2018 | 1h| muutoksia koodikatselmointi kommenttien perusteella|
+| 7.5.2018 | 1.5h  | arkkitehtuurikuvaus, listojen testaus |
+| **yhteensä** | 45.5h |
