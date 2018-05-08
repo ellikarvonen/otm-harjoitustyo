@@ -21,6 +21,8 @@ Sovellus on tehty Helsingin Yliopiston Tietojenkäsittelytieteen Ohjelmistotekni
 
 [viikko 6](https://github.com/ellikarvonen/otm-harjoitustyo/releases/tag/viikko6)
 
+[loppupalautus](https://github.com/ellikarvonen/otm-harjoitustyo/releases/tag/loppupalautus)
+
 ## Komentorivitoiminnot
 
 ### Testaus
