@@ -15,7 +15,7 @@ DAO-luokkia testetaan luomalla ensin tietokanta testejä varten. DAO-luokkien te
 ### Testauskattavuus
 Käyttöliittymää ei ole testattu. Testauksen rivikattavuus oli muuten **XX** ja haarautumiskattavuus **XX**
 
-[!alt text](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/testiraportti.png)
+![alt text](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/testiraportti.png)
 
 Testaamatta jäi tilanteita, joissa ulkopuolelta tulee virhe, esimerkiksi sovellus on kahdessa ikkunassa auki.
 
