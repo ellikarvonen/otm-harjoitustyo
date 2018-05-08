@@ -10,12 +10,12 @@ Sovellus käynnoistyy etusivulle.
 
 ## Uuden kurssin luominen
 
-Uuden kurssin luominen onnistuu suurtymällä etusivulta "Lisää uusi kurssi" -sivulle. Käyttäjä Kirjoittaa kenttiin kurssin nimen ja opintopistemäärän. Tavoitearvosana on oletusarvoisesti "-", mutta sen voi vaihtaa pudotusvalikosta.
+Uuden kurssin luominen onnistuu siirtymällä etusivulta "Lisää uusi kurssi" -sivulle. Käyttäjä kirjoittaa kenttiin kurssin nimen ja opintopistemäärän. Tavoitearvosana on oletusarvoisesti "-", mutta sen voi vaihtaa pudotusvalikosta.
 Kurssin lisäys onnistuu Lisää-napista.
 
 ![alt text](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/lisaa_uusi_kurssi.png)
 
-Jos kurssin nimi on liian pitkä, saman niminen kurssi on jo olemassa tai kurssin nimi on tyhjä, niin ruudulle ilmestyy virheviesti. Virheviesti ilmestyy myös jos opintopisteet eivät ole kokonaisluku.
+Jos kurssin nimi on liian pitkä, saman niminen kurssi on jo olemassa tai kurssin nimi on tyhjä, niin ruudulle ilmestyy virheviesti. Virheviesti ilmestyy myös, jos opintopisteet eivät ole kokonaisluku.
 
 
 ## Kurssin lisääminen suoritetuksi 
@@ -34,7 +34,7 @@ Kurssien tietoja voi tarkastella sivulta "Kurssitiedot". Käyttäjä valitsee ku
 ## Kurssin tietojen päivittäminen
 
 Kurssin tietojen päivitys onnistuu Päivitä kurssitietoja -sivulta.
-Kurssin opintopistemäärää, arvosanatavoitetta ja arvosanaa voi päivittää. Suoritusarvosanaa voi päivittää vain, jos kurssi on suoritettu. Opintopistemäärän tulee olla kokonaisluku. Sovellus kertoo, jos päivitys onnistuu. Käyttäjä syöttää uuden opintopistemäärän kenttään ja valitsee arvosanat pudotusvalikoista. Jos käyttäjä ei halua muuttaa kyseistä arvoa, voi hän jättää kohdan tyhjäksi.
+Kurssin opintopistemäärää, arvosanatavoitetta ja arvosanaa voi päivittää. Suoritusarvosanaa voi päivittää vain, jos kurssi on suoritettu. Opintopistemäärän tulee olla kokonaisluku. Sovellus kertoo, jos päivitys onnistuu. Käyttäjä syöttää uuden opintopistemäärän kenttään ja valitsee arvosanat pudotusvalikoista. Jos käyttäjä ei halua muuttaa kyseistä arvoa, jättää hän kohdan tyhjäksi.
 
 ![alt text](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/muutakurssin_tietoja.png)
 
