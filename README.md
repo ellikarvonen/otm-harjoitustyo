@@ -9,9 +9,12 @@ Sovellus on tehty Helsingin Yliopiston Tietojenkäsittelytieteen Ohjelmistotekni
 
 [Vaatimusmäärittely](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/vaatimusmaarittely.md)
 
+[Arkkitehtuurikuvaus](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/arkkitehtuuri.md)
+
+[Testaus](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/testaus.md)
+
 [Työaikakirjanpito](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/tyoaikakirjanpito.md)
 
-[Arkkitehtuurikuvaus](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/arkkitehtuuri.md)
 
 ## Releaset
 [viikko 5](https://github.com/ellikarvonen/otm-harjoitustyo/releases/tag/viikko5)
