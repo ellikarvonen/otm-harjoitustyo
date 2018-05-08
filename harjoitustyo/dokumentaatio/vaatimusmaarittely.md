@@ -3,12 +3,11 @@
 ## Sovelluksen tarkoitus
 
 Sovelluksen käyttäjän on mahdollista seurata kursseille asettamiaan tavoitearvosanoja ja saatuja arvosanoja. 
-Käyttäjä voi tarkastella kurssien tietoja.
+Käyttäjä voi tarkastella kurssien tietoja ja muuttaa niitä tarvittaessa. Kurssin voi myös poistaa.
 
 ## Käyttäjät
 
-Alkuvaiheessa sovellusta voi käyttää vain yksi käyttäjä. Myöhemmin sovellukseen saatetaan lisätä kirjautumismahdollisuus,
-jolloin useampi käyttäjä voi käyttää sovellusta.
+Perusversiossa sovellusta voi käyttää vain yksi käyttäjä.
 
 ## Käyttöliittymäluonnos
 
@@ -16,21 +15,24 @@ jolloin useampi käyttäjä voi käyttää sovellusta.
 
 ## Perusversion tarjoama toiminnallisuus
 - voi lisätä kursseja
-  - kursseilla on nimi ja opintopisteitä
+  - kursseilla on uniikki nimi ja opintopisteitä
 - kurssille voi lisätä tavoitearvosanan
-  - arvosana on välillä 0-5
+  - arvosana on välillä 0-5 tai - (ei tavoitetta)
 - kurssin voi lisätä suoritetuksi
   - arvosana on välillä 0-5
 - kurssitietojen hakeminen
   - kurssin nimi, opintopisteet, tavoitearvosana (jos on) ja saatu arvosana (jos on)
+- tilastojen tarkastelu
+  - kurssien arvosanojen keskiarvo
+  - suoritettujen kurssien opintopisteiden summa
+- kurssin tietojen editointi
+- kurssien poistaminen
 
 ## Jatkokehitysideoita
 - tilastojen luominen
-  - kurssien arvosanojen keskiarvo
-  - suoritettujen kurssien opintopisteiden summa
+  - tavoitteeseen pääsemisen onnistumisprosentin laskeminen
   - diagrammi josta näkee tavoitearvosanat ja saadut arvosanat
 - useampi käyttäjä, kirjautumismahdollisuus
-- kurssin tietojen editointi
-- kurssien poistaminen
 - kurssien suorittamisajankohdan lisääminen
+- kurssien suoritusajankohtien suunnittelu
 
