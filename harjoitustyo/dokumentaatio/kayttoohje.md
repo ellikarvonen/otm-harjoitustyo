@@ -4,7 +4,7 @@
 Ohjelman saa käynnistettyä komennolla: **java -jar Opinnot-1.jar**
 
 ## Etusivu
-Sovellus käynnoistyy etusivulle.
+Sovellus käynnistyy etusivulle.
 
 ![alt text](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/etusivu.png)
 
