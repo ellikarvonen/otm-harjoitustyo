@@ -24,7 +24,7 @@ Käyttöliittymä on erillään sovelluslogiikasta ja se kutsuu sovelluslogiikas
 
 ## Sovelluslogiikka
 
-Sovelluslogiikasta huolehtii luokka [study.domain.studyService](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/Opinnot/src/main/java/study/domain/StudyService.java) luokka. Luokka tarjoaa käyttöliittymälle metodeja, kuten:
+Sovelluslogiikasta huolehtii [study.domain.studyService](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/Opinnot/src/main/java/study/domain/StudyService.java) luokka. Luokka tarjoaa käyttöliittymälle metodeja, kuten:
 - String saveCourseAndGoalGrade(String name, String credit, Grade grade)
 - String printAvarageGrade()
 - String printComplitedCoursesCreditSum()
