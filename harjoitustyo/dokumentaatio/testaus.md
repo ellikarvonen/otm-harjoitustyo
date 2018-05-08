@@ -24,5 +24,5 @@ Testaamatta jäi tilanteita, joissa ulkopuolelta tulee virhe, esimerkiksi sovell
 ### Asennus
 ### Toiminnallisuudet
 
-Käyttöohjeessa ja vaatimusmäärittelydokumentissa olevat toiminnalisuudet on käyty läpi.
+[Käyttöohjeessa](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/kayttoohje.md) ja [vaatimusmäärittelydokumentissa](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/vaatimusmaarittely.md) olevat toiminnalisuudet on käyty läpi.
 Syötekenttiä on yrittetty täyttää myös virheellisillä arvoilla, kuten tyhjillä ja kirjaimilla, kun syöte tulisi olla numero.
