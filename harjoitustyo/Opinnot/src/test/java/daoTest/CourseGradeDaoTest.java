@@ -96,7 +96,7 @@ public class CourseGradeDaoTest {
     public void deleteByNameWorks() throws SQLException{
         CourseGrade cg = cgd.save(new CourseGrade("Test", "3", 1));
         cgd.deleteByName("Test");
-        assertTrue(cgd.findAllCoursesWithGoal().isEmpty());
+        assertFalse(cgd.findByNameComplitedCourse("Test"));
     }
     
     @Test

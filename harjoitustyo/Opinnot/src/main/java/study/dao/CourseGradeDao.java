@@ -86,38 +86,7 @@ public class CourseGradeDao {
         return g;
     }
 
-    
-    /**
-     * Etsii kaikki kurssit, joilla tavoite.
-     * @return lista kursseista
-     * @throws SQLException Tietokanta virhe
-     */
-    public List<CourseGrade> findAllCoursesWithGoal() throws SQLException {
-        ArrayList<CourseGrade> courses = new ArrayList<>();
-       
-        Connection con = db.getConnection();
-        
-        PreparedStatement stmt = con.prepareStatement("SELECT * FROM CourseGrade WHERE goal = 1");
-       
-        ResultSet rs = stmt.executeQuery();
-        
-        while (rs.next()) {
-            try { 
-                Integer.parseInt(rs.getString("grade"));
-                CourseGrade cg = new CourseGrade(rs.getString("name"), rs.getString("grade"), rs.getInt("goal"));
-                courses.add(cg);
-            } catch (NumberFormatException | NullPointerException e) {
-               
-            }
-        }
-        
-        rs.close();
-        stmt.close();
-        con.close();
-        
-        return courses;
-    }
-    
+   
     /**
      * Poistaa kurssin nimen perusteella.
      * @param name kurssin nimi
