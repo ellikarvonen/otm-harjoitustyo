@@ -192,7 +192,7 @@ public class StudyService {
     }
     
     /**
-     * Tarkistaa onko opintopistemäärä kokonaisluku
+     * Tarkistaa onko opintopistemäärä kokonaisluku.
      * @param credit opintopistemäärä
      * @return true jos opintopistemäärä on kokonaisluku
      */
@@ -208,7 +208,7 @@ public class StudyService {
     /**
      * Tulostaa viestin suoritettujen kurssien keskiarvosta.
      * @return viesti
-     * @throws SQLException Tietokanta virhe
+     * @throws SQLException Tietokantavirhe
      */
     public String printAvarageGrade() throws SQLException {
         return "Suoritettujen kurssien keskiarvo: " + stat.gradeAvarage();
@@ -217,7 +217,7 @@ public class StudyService {
     /**
      * Tulostaa viestin suoritettujen kurssien summasta.
      * @return viesti
-     * @throws SQLException Tietokanta virhe
+     * @throws SQLException Tietokantavirhe
      */
     public String printCompletedCoursesCreditSum() throws SQLException {
         return "Suoritettuja opintopisteitä yhteensä: " + stat.completedCoursesCreditSum();
@@ -244,7 +244,7 @@ public class StudyService {
      * @param name kurssin nimi
      * @param credit opintopisteet
      * @return viesti joka kertoo onnistuiko päivitys
-     * @throws SQLException tietokanta virhe
+     * @throws SQLException tietokantavirhe
      */
     public String updateCredit(String name, String credit) throws SQLException {
         if (this.creditIsInteger(credit)) {
@@ -262,7 +262,7 @@ public class StudyService {
      * @param name kurssin nimi
      * @param grade arvosana
      * @return viesti 
-     * @throws SQLException tietokanta virhe
+     * @throws SQLException tietokantavirhe
      */
     public String updateGoalGrade(String name, String grade) throws SQLException {
         cgd.updateGrade(name, grade, 1);
@@ -275,7 +275,7 @@ public class StudyService {
      * @param name kurssin nimi
      * @param grade arvosana
      * @return Palauttaa viestin käyttäjälle, voiko arvosanan päivittää.
-     * @throws SQLException
+     * @throws SQLException tietokantavirhe
      */
     public String updateGrade(String name, String grade) throws SQLException {
         try {

@@ -47,11 +47,7 @@ public class GradeTest {
         assertEquals("5",grade.getGrade());
     }
     
-    @Test
-    public void setGradeWorks(){
-        grade.setGrade("10");
-        assertEquals("10", grade.getGrade());
-    }
+   
     
     @Test
     public void toStringWorks(){

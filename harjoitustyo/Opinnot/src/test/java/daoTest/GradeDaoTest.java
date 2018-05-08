@@ -62,11 +62,15 @@ public class GradeDaoTest {
     
     @Test
     public void findAllWorks() throws SQLException {
-        gd.save(new Grade("2"));
-        gd.save(new Grade("10"));
-        
-        assertEquals("2", gd.findAll().get(0).getGrade());
-        assertEquals("10", gd.findAll().get(1).getGrade());
+        assertEquals("1", gd.findAll().get(0).getGrade());
+        assertEquals("2", gd.findAll().get(1).getGrade());
+    }
+    
+    @Test
+    public void findAllNumbersWorks() throws SQLException{
+        assertEquals(2, gd.findAllNumbers().size());
+        assertEquals("1", gd.findAllNumbers().get(0).getGrade());
+        assertEquals("2", gd.findAllNumbers().get(1).getGrade());
     }
     
     private void initDbs(File dbfile) throws SQLException {
@@ -75,6 +79,9 @@ public class GradeDaoTest {
         String createCourseGrade = "CREATE TABLE CourseGrade (integer id PRIMARY KEY, name varchar(200), grade varchar(20)," 
                 + "goal integer, FOREIGN KEY (name) REFERENCES Course(name), FOREIGN KEY(grade) REFERENCES Grade(grade));";
         String createGrade = "CREATE TABLE Grade (grade varchar(20), PRIMARY KEY(grade));";
+        String addGrade1 = "INSERT INTO Grade (grade) VALUES ('1');";
+        String addGrade2 = "INSERT INTO Grade (grade) VALUES ('2');";
+        String addGrade = "INSERT INTO Grade (grade) VALUES ('-');";
 
         List<String> list = new ArrayList<>();
         list.add("DROP TABLE IF EXISTS Course");
@@ -83,6 +90,9 @@ public class GradeDaoTest {
         list.add(createCourseGrade);
         list.add("DROP TABLE IF EXISTS Grade");
         list.add(createGrade);
+        list.add(addGrade1);
+        list.add(addGrade2);
+        list.add(addGrade);
 
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:" + dbfile.getAbsolutePath())) {
             Statement stmt = conn.createStatement();

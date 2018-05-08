@@ -126,7 +126,8 @@ public class CourseDaoTest {
     @Test
     public void findAllUncompletedCoursesWorks() throws SQLException{
         
-        cd.save(new Course("TestCompleted", 10));
+        Course cc = new Course("TestCompleted", 10);
+        cd.save(cc);
         cgd.save(new CourseGrade("TestCompleted", "3", 0));
         
         
@@ -136,13 +137,13 @@ public class CourseDaoTest {
         cd.save(c1);
         cd.save(c2);
         
-        List<Course> list = new ArrayList<>();
-        list.add(c1);
-        list.add(c2);
+        List <Course> list = cd.findAllUncompletedCourses();
         
-        
-        assertSame(list, cd.findAllUncompletedCourses());
-        
+        assertEquals(2, list.size());
+        assertFalse(list.contains(cc));
+        assertEquals("Test1", list.get(0).getName());
+        assertEquals("Test2", list.get(1).getName());
+       
         
     }
         

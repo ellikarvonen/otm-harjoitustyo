@@ -85,56 +85,7 @@ public class CourseGradeDao {
 
         return g;
     }
-    
-    /**
-     * Etsii kaikki suoritetut kurssit.
-     * @return listan kursseista
-     * @throws SQLException Tietokanta virhe
-     */
-    public List<CourseGrade> findAllCompletedCourses() throws SQLException {
 
-        ArrayList<CourseGrade> courses = new ArrayList<>();
-
-        Connection con = db.getConnection();
-        PreparedStatement stmt = con.prepareStatement("SELECT * FROM CourseGrade WHERE goal = 0");
-        ResultSet rs = stmt.executeQuery();
-
-        while (rs.next()) {
-            CourseGrade cg = new CourseGrade(rs.getString("name"), rs.getString("grade"), rs.getInt("goal"));
-            courses.add(cg);
-        }
-        
-        rs.close();
-        stmt.close();
-        con.close();
-
-        return courses;
-    }
-    
-    /**
-     * Etsii kaikki kurssit, jotka on suoritettu ja niillä on tavoite.
-     * @return lista kursseista
-     * @throws SQLException Tietokanta virhe
-     */
-    public List<String> findAllCompletedCoursesWithGoal() throws SQLException {
-        ArrayList<String> courses = new ArrayList<>();
-        Connection conn = db.getConnection();
-        
-        PreparedStatement stmt = conn.prepareStatement("SELECT DISTINCT CourseGrade.name FROM CourseGrade WHERE goal=1 AND grade IN ('0','1', '2', '3', '4', '5')" 
-                + "INTERSECT SELECT DISTINCT CourseGrade.name FROM CourseGrade WHERE goal=0 AND grade IN ('1', '2', '3', '4', '5')");
-
-        ResultSet rs = stmt.executeQuery();
-        
-        while (rs.next()) {
-            
-            courses.add(rs.getString("name"));
-        }
-        stmt.close();
-        rs.close();
-        conn.close();
-        
-        return courses;
-    }
     
     /**
      * Etsii kaikki kurssit, joilla tavoite.

@@ -73,25 +73,5 @@ public class Statistics {
         
     }
     
-//    public String countSucceesCourses() throws SQLException {
-//        List<CourseGrade> goal = cd.findAllCoursesWithGoal();
-//        List<CourseGrade> completed = cd.findAllCompletedCoursesWithGoal();
-//        int gradeIsBigger = 0;
-//        
-//        int index = 0;
-//        while (index < completed.size()){
-//            int index2 = 0;
-//            while (index2 < goal.size()){
-//                if (completed.get(index).getCourse().equals(goal.get(index2).getCourse()) && 
-//                        Integer.parseInt(completed.get(index).getGrade()) >= Integer.parseInt(goal.get(index2).getGrade())) {
-//                    gradeIsBigger++;
-//                }
-//                index2 ++;
-//            }
-//            index ++;
-//        }
-//        
-//        return gradeIsBigger + "/" + completed.size(); 
-//    }
     
 }

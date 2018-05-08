@@ -6,25 +6,34 @@
 package study.domain;
 
 /**
- *
+ * Yksittäistä arvosanaa kuvaava luokka.
  * @author ellikarv
  */
 public class Grade {
     
     private String grade;
     
+    /**
+     * Tämä on konstruktori.
+     * @param grade arvosana
+     */
     public Grade(String grade) {
         this.grade = grade;
     }
     
+    /**
+     * Palauta arvosana.
+     * @return arvosana
+     */
     public String getGrade() {
         return grade;
     }
 
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
     
+    /**
+     * Tulostaa arvosanan.
+     * @return arvosana
+     */
     public String toString() {
         return grade;
     }

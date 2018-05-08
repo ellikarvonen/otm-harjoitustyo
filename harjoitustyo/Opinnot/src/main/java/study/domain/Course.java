@@ -6,7 +6,7 @@
 package study.domain;
 
 /**
- *
+ * Yksittäistä kurssia kuvaava luokka.
  * @author ellikarv
  */
 public class Course {
@@ -23,22 +23,28 @@ public class Course {
         this.name = name;
         this.credit = credit;
     }
+
+    /**
+     * Palauta nimi.
+     * @return nimi
+     */
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-    
+    /**
+     * Palauta opintopisteet.
+     * @return opintopisteet
+     */
     public Integer getCredit() {
         return credit;
     }
     
-    public void setCredit(Integer credit) {
-        this.credit = credit;
-    }
-    
+
+    /**
+     * Tulostaa kurssin nimen.
+     * @return nimi
+     */
     public String toString() {
         return name;
     }

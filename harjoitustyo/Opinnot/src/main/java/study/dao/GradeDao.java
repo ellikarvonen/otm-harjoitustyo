@@ -32,43 +32,10 @@ public class GradeDao {
         this.db = db;
     }
 
-    /**
-     * Tallentaa arvosanan.
-     * @param grade arvosana
-     * @return arvosana joka tallennettu
-     * @throws SQLException Tietokanta virhe
-     */
-    public Grade save(Grade grade) throws SQLException {
-        Connection conn = db.getConnection();
-           
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Grade (grade) VALUES (?)");
-
-        stmt.setString(1, grade.getGrade());
-        
-        stmt.executeUpdate();
-
-        stmt.close();
-       
-        stmt = conn.prepareStatement("SELECT * FROM Grade WHERE grade = ?");
-        stmt.setString(1, grade.getGrade());
-
-        ResultSet rs = stmt.executeQuery();
-        rs.next(); // vain 1 tulos
-
-        Grade c = new Grade(rs.getString("grade"));
-                
-
-        stmt.close();
-        rs.close();
-
-        conn.close();
-
-        return c;
-    }
 
 
     /**
-     * Etsii kaikki arvosanat
+     * Etsii kaikki arvosanat.
      * @return lista arvosanoista
      * @throws SQLException Tietokanta virhe
      */
@@ -92,7 +59,7 @@ public class GradeDao {
     }
     
     /**
-     * Etsii kaikki arvosanat, jotka on numeroita
+     * Etsii kaikki arvosanat, jotka on numeroita.
      * @return lisyta arvosanoista
      * @throws SQLException Tietokanta virhe
      */

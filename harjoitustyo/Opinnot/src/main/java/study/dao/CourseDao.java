@@ -59,7 +59,7 @@ public class CourseDao {
     }
 
     /**
-     * Tallentaa kurssin
+     * Tallentaa kurssin.
      * @param course kurssi
      * @return tallennettu kurssi
      * @throws SQLException Tietokanta virhe

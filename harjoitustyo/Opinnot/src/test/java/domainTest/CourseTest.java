@@ -55,18 +55,7 @@ public class CourseTest {
         assertEquals("OTM", name);
     }
     
-    @Test
-    public void setNameWorks(){
-        course.setName("Test");
-        assertEquals("Test", course.getName());
-    }
-    
-    @Test
-    public void setCreditWorks(){
-        course.setCredit(10);
-        int credit = course.getCredit();
-        assertEquals(10, credit);
-    }
+
     
     @Test
     public void toStringWorks(){

@@ -6,37 +6,47 @@
 package study.domain;
 
 /**
- *
+ * Kurssiin liittyvää arvosanaa kuvaava luokka.
  * @author ellikarv
  */
 public class CourseGrade {
     
-    private String course;
+    private String courseName;
     private String grade;
     private Integer goal;
            
-    public CourseGrade(String course, String grade, Integer goal) {
+    /**
+     * Konstruktori.
+     * @param courseName kurssin nimi
+     * @param grade arvosana
+     * @param goal tavoite
+     */
+    public CourseGrade(String courseName, String grade, Integer goal) {
         this.goal = goal;
-        this.course = course;
+        this.courseName = courseName;
         this.grade = grade;
     }
     
+    /**
+     * Palauta kurssin nimi.
+     * @return kurssin nimi
+     */
     public String getCourse() {
-        return course;
+        return courseName;
     }
-    
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-    
+ 
+    /**
+     * Palauta arvosana.
+     * @return arvosana
+     */
     public String getGrade() {
         return grade;
     }
-    
-    public void setGoal(Integer goal) {
-        this.goal = goal;
-    }
-    
+   
+    /**
+     * Palauta, onko kyseessä tavoite vai suoritus.
+     * @return tavoite
+     */
     public Integer getGoal() {
         return goal;
     }
