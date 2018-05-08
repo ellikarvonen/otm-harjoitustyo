@@ -6,7 +6,7 @@ Ohjelmaa on testattu sekä JUnitilla yksikkö- ja integraatiotestein. Lisäksi o
 
 ### Sovelluslogiikka
 
-Paukkauksen study.domain luokkien testaus tapahtuu CourseTest, CourseGradeTest, GradeTest ja StudyServiceTest testeissä.
+Paukkauksen study.domain luokkien testaus tapahtuu [CourseTest](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/Opinnot/src/test/java/domainTest/CourseTest.java), [CourseGradeTest](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/Opinnot/src/test/java/domainTest/CourseGradeTest.java), [GradeTest](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/Opinnot/src/test/java/domainTest/GradeTest.java) ja [StudyServiceTest](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/Opinnot/src/test/java/domainTest/StudyServiceTest.java) testeissä.
 
 ### DAO-luokat
 
