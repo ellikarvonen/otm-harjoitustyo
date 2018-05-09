@@ -1,7 +1,7 @@
 # Käyttöohje
 
 ## Ohjelman käynnistäminen
-Ohjelman saa käynnistettyä komennolla: **java -jar Opinnot-1.jar**
+Ohjelman saa käynnistettyä komennolla: **java -jar Opinnot-final.jar**
 
 ## Etusivu
 Sovellus käynnistyy etusivulle.
