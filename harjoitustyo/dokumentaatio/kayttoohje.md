@@ -20,7 +20,7 @@ Jos kurssin nimi on liian pitkä, saman niminen kurssi on jo olemassa tai kurssi
 
 ## Kurssin lisääminen suoritetuksi 
 
-Kurssin voi lisätä suoritetuksi sivulta "Lisää kurssi suoritetuksi". Käyttäjä valitsee pudotusvalikosta kurssin ja arvosanan. Arvosana on oletusarvoisesti "0". Jos kursseja, joita voi lisätä suoritetuksi ei ole olemassa. Siirtyy sivusto virheviesti sivulle.
+Kurssin voi lisätä suoritetuksi sivulta "Lisää kurssi suoritetuksi". Käyttäjä valitsee pudotusvalikosta kurssin ja arvosanan. Arvosana on oletusarvoisesti "0". Jos kursseja, joita voi lisätä suoritetuksi ei ole olemassa siirtyy sivusto virheviesti sivulle.
 
 ![alt text](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/Screenshot%20from%202018-05-02%2013-10-52.png)
 ![alt text](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/suorittamattomia_kursseja_ei_ole.png)
