@@ -24,4 +24,5 @@
 | 2.5.2018 | 3.5h| testejä, mahdollisuus kurssitietojen muuttamiseen|
 | 4.5.2018 | 1h| muutoksia koodikatselmointi kommenttien perusteella|
 | 7.5.2018 | 1.5h  | arkkitehtuurikuvaus, listojen testaus |
-| **yhteensä** | 45.5h |
+| 8.5.2018 | 3.5h  | testausta ja dokumentaatiota |
+| **yhteensä** | 49h |
