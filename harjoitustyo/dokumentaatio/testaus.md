@@ -28,4 +28,4 @@ Sovellus on ladattu ja sitä on testattu [käyttöohjeen](https://github.com/ell
 ### Toiminnallisuudet
 
 Käyttöohjeessa ja [vaatimusmäärittelydokumentissa](https://github.com/ellikarvonen/otm-harjoitustyo/blob/master/harjoitustyo/dokumentaatio/vaatimusmaarittely.md) olevat toiminnalisuudet on käyty läpi.
-Syötekenttiä on yrittetty täyttää myös virheellisillä arvoilla, kuten tyhjillä ja kirjaimilla, kun syöte tulisi olla numero.
+Syötekenttiä on yritetty täyttää myös virheellisillä arvoilla, kuten tyhjillä ja kirjaimilla, kun syöte tulisi olla numero.
